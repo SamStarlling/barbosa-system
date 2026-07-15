@@ -30,11 +30,13 @@
             'float': 'float 6s ease-in-out infinite',
             'beam-v': 'beam-v 4s infinite linear',
             'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'float-cyan': 'float 6s ease-in-out infinite, borderPulseCyan 4s ease-in-out infinite',
+            'float-emerald': 'float 6s ease-in-out 3s infinite, borderPulseEmerald 4s ease-in-out 2s infinite',
           },
           keyframes: {
             float: {
               '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-20px)' },
+              '50%': { transform: 'translateY(-15px)' },
             },
             'beam-v': {
               '0%': { transform: 'translateY(-100%)' },
@@ -43,6 +45,14 @@
             fadeInUp: {
               '0%': { opacity: '0', transform: 'translateY(20px)' },
               '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            borderPulseCyan: {
+              '0%, 100%': { borderColor: 'rgba(6, 182, 212, 0.15)', boxShadow: '0 0 20px -10px rgba(6, 182, 212, 0)' },
+              '50%': { borderColor: 'rgba(6, 182, 212, 0.5)', boxShadow: '0 0 25px -5px rgba(6, 182, 212, 0.4)' },
+            },
+            borderPulseEmerald: {
+              '0%, 100%': { borderColor: 'rgba(16, 185, 129, 0.15)', boxShadow: '0 0 20px -10px rgba(16, 185, 129, 0)' },
+              '50%': { borderColor: 'rgba(16, 185, 129, 0.5)', boxShadow: '0 0 25px -5px rgba(16, 185, 129, 0.4)' },
             }
           }
         }
@@ -178,7 +188,7 @@
 
       <!-- Card Dentistas -->
       <div
-        class="glass-panel p-5 rounded-2xl flex items-start gap-4 text-left flex-1 border border-white/10 hover:border-cyan-500/40 hover:bg-white/[0.04] transition-all group cursor-default">
+        class="glass-panel p-5 rounded-2xl flex items-start gap-4 text-left flex-1 border border-white/10 hover:bg-white/[0.06] transition-all group cursor-default animate-float-cyan hover:scale-105 duration-500">
         <div
           class="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-110 transition-transform">
           <iconify-icon icon="solar:tooth-bold" width="24"></iconify-icon>
@@ -195,7 +205,7 @@
 
       <!-- Card Corretores -->
       <div
-        class="glass-panel p-5 rounded-2xl flex items-start gap-4 text-left flex-1 border border-white/10 hover:border-emerald-500/40 hover:bg-white/[0.04] transition-all group cursor-default">
+        class="glass-panel p-5 rounded-2xl flex items-start gap-4 text-left flex-1 border border-white/10 hover:bg-white/[0.06] transition-all group cursor-default animate-float-emerald hover:scale-105 duration-500">
         <div
           class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-110 transition-transform">
           <iconify-icon icon="solar:home-smile-bold" width="24"></iconify-icon>
