@@ -1,0 +1,93 @@
+.font-orbitron { font-family: 'Orbitron', sans-serif; }
+body { font-family: 'Inter', sans-serif; }
+/* Strict sharp aesthetics for scrollbar */
+::-webkit-scrollbar {
+width: 6px;
+}
+::-webkit-scrollbar-track {
+background: #000;
+border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb {
+background: rgba(0, 255, 255, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+background: rgba(0, 255, 255, 0.5);
+}
+/* Vertical Light Streaks & CRT Scanlines */
+.vertical-streaks {
+background-image: linear-gradient(90deg, transparent 99%, rgba(0, 255, 255, 0.03) 100%);
+background-size: 10vw 100%;
+}
+.crt-scanlines {
+background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+background-size: 100% 4px;
+}
+/* Animated Data Line */
+@keyframes scan-horizontal {
+0% { transform: translateX(-100%); }
+100% { transform: translateX(200%); }
+}
+.animate-scan-line {
+animation: scan-horizontal 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes hero-rise {
+0% { opacity: 0; transform: translate3d(0, 24px, 0); }
+100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.animate-hero-rise {
+animation: hero-rise 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-on-scroll {
+opacity: 0;
+transform: translate3d(0, 28px, 0);
+transition: opacity 800ms ease, transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+transition-delay: var(--reveal-delay, 0ms);
+will-change: transform, opacity;
+}
+.reveal-on-scroll.in-view {
+opacity: 1;
+transform: translate3d(0, 0, 0);
+}
+.kinetic-heading {
+opacity: 0;
+filter: blur(8px);
+transform: translate3d(0, 26px, 0) scale(0.98);
+transition: opacity 900ms ease, transform 900ms cubic-bezier(0.22, 1, 0.36, 1), filter 900ms ease;
+will-change: transform, opacity, filter;
+}
+.kinetic-heading.in-view {
+opacity: 1;
+filter: blur(0);
+transform: translate3d(0, 0, 0) scale(1);
+}
+#scroll-progress {
+transform-origin: left center;
+transform: scaleX(0);
+transition: transform 120ms linear;
+}
+.magnetic-card {
+--mx: 0px;
+--my: 0px;
+}
+.magnetic-card.reveal-on-scroll {
+transform: translate3d(0, 28px, 0);
+}
+.magnetic-card.reveal-on-scroll.in-view {
+transform: translate3d(0, 0, 0);
+}
+.js-parallax {
+will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+.animate-hero-rise,
+.animate-scan-line,
+.reveal-on-scroll,
+.kinetic-heading {
+animation: none !important;
+transition: none !important;
+opacity: 1 !important;
+transform: none !important;
+filter: none !important;
+}
+}

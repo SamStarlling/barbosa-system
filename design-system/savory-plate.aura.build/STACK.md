@@ -1,0 +1,14 @@
+- **Tailwind CSS** — utility-first CSS framework (loaded as CDN runtime via `assets/resource_3fa48481346f.es`) used for all layout, spacing, color and typography utilities
+- **Tailwind Plugin (custom)** — inline plugin extending Tailwind with `rotate-x/y/z`, `perspective-*` and `transform-style-*` utilities and brand colors
+- **Iconify** — icon framework loaded via `assets/iconify_654a1ef798a3.js` providing the `<iconify-icon>` web component
+- **Iconify Web Component** — `assets/iconify-icon_9a6f357c8b9e.js` registers the custom element used for every UI icon
+- **Solar icon set** — used through Iconify for the bulk of icons (`solar:magnifer-linear`, `solar:chef-hat-bold`, `solar:star-bold`, `solar:arrow-right-linear`, etc.)
+- **Brandico icon set** — used through Iconify for social icons (`brandico:tiktok`, `brandico:pinterest`)
+- **Lucide (inline SVG)** — single hand-metal cursor hint SVG (`lucide-hand-metal`) inlined in the testimonial card
+- **Plus Jakarta Sans** — primary sans-serif body font
+- **Playfair Display** — serif display font used for headlines and the giant footer wordmark
+- **Geist Mono** — monospaced font used for labels, eyebrows and meta text
+- **Google Analytics 4** — analytics via `assets/js_19c0e2c2c8a8.js` and inline gtag init (measurement id `G-2M6V79H761`)
+- **Aura Supabase Token Firewall** — security shim that blocks Supabase auth-token storage, fetch, XHR, beacon and websocket access
+- **Image fallback script** — hash-based deterministic fallback that swaps any broken `<img>` to a Supabase-hosted placeholder
+- **Custom swipe-deck JS** — drag/touch interaction with spring snap-back and inertial throw for the testimonial card stack

@@ -1,0 +1,58 @@
+body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf9f6; }
+.font-serif { font-family: 'Playfair Display', serif; }
+.font-mono { font-family: 'Geist Mono', monospace; }
+/* Modern Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+/* Grid Pattern Background */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+}
+/* Utility Classes */
+.glass-panel { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.5); }
+.text-balance { text-wrap: balance; }
+
+/* Brand colors and helpers */
+.bg-brand-rose { background-color: #e11d48; }
+.text-brand-rose { color: #e11d48; }
+.border-brand-rose { border-color: #e11d48; }
+.hover\:bg-brand-rose:hover { background-color: #e11d48; }
+.hover\:text-brand-rose:hover { color: #e11d48; }
+.hover\:border-brand-rose:hover { border-color: #e11d48; }
+.group:hover .group-hover\:bg-brand-rose { background-color: #e11d48; }
+.group:hover .group-hover\:text-brand-rose { color: #e11d48; }
+.group:hover .group-hover\:border-brand-rose { border-color: #e11d48; }
+.bg-brand-rose\/5 { background-color: rgba(225,29,72,0.05); }
+.shadow-brand-rose\/20 { --tw-shadow-color: rgba(225,29,72,0.2); }
+.border-t-brand-rose { border-top-color: #e11d48; }
+.selection\:bg-brand-rose ::selection { background-color: #e11d48; color: #fff; }
+
+.bg-brand-black { background-color: #0b0b0b; }
+.text-brand-black { color: #0b0b0b; }
+.group:hover .group-hover\:bg-brand-rose.group-hover\:text-white { color: #fff; }
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+
+/* Perspective helper for swipe deck */
+.perspective-1000 { perspective: 1000px; }
+
+/* Animate-in helpers used in mobile menu */
+@keyframes slide-in-from-top-4 {
+  from { transform: translateY(-1rem); }
+  to { transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-in { animation-duration: 200ms; animation-fill-mode: both; }
+.slide-in-from-top-4 { animation-name: slide-in-from-top-4; }
+.fade-in { animation-name: fade-in, slide-in-from-top-4; }

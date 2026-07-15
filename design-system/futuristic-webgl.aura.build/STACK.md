@@ -1,0 +1,10 @@
+- **Tailwind CSS** — utility-first CSS framework (loaded via the bundled `resource_3fa48481346f.es` runtime) used for all layout, color and spacing
+- **Orbitron** — Google Font used for headings and uppercase tech labels
+- **Inter** — Google Font used as the base body typeface
+- **Iconify (`iconify-icon` web component)** — icon system providing the `solar:*-linear` icon set throughout the page
+- **UnicornStudio** — WebGL scene runtime that renders the hero `data-us-project` shader background
+- **Google Analytics 4 (gtag.js)** — analytics tracking for property `G-2M6V79H761`
+- **IntersectionObserver API** — drives the `reveal-on-scroll` animation triggers
+- **requestAnimationFrame loop** — powers the scroll progress bar, parallax layers and magnetic-card pointer effects
+- **Custom CSS keyframes** — `scan-horizontal` and `hero-rise` animations plus CRT-scanline and vertical-streak decorative backgrounds
+- **Aura platform runtime** — Supabase token firewall, image fallback handler and bundled JS originated from the aura.build host
