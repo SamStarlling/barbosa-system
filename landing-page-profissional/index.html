@@ -32,8 +32,13 @@
             'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
             'float-cyan': 'float 6s ease-in-out infinite, borderPulseCyan 4s ease-in-out infinite',
             'float-emerald': 'float 6s ease-in-out 3s infinite, borderPulseEmerald 4s ease-in-out 2s infinite',
+            'marquee': 'marquee 35s linear infinite',
           },
           keyframes: {
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
             float: {
               '0%, 100%': { transform: 'translateY(0)' },
               '50%': { transform: 'translateY(-15px)' },
@@ -182,42 +187,190 @@
         complicação!</span>
     </p>
 
-    <!-- Mini-dores (Pain points) -->
-    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-14 w-full max-w-3xl animate-fade-in-up"
-      style="animation-delay: 0.4s;">
+    <!-- Mini-dores (Pain points) Carousel -->
+    <div class="w-full max-w-[100vw] overflow-hidden relative mb-14 animate-fade-in-up" style="animation-delay: 0.4s;">
+      
+      <!-- Gradient Fade Masks -->
+      <div class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#030305] to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#030305] to-transparent z-10 pointer-events-none"></div>
 
-      <!-- Card Dentistas -->
-      <div
-        class="glass-panel p-5 rounded-2xl flex items-start gap-4 text-left flex-1 border border-white/10 hover:bg-white/[0.06] transition-all group cursor-default animate-float-cyan hover:scale-105 duration-500">
-        <div
-          class="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-110 transition-transform">
-          <iconify-icon icon="solar:tooth-bold" width="24"></iconify-icon>
-        </div>
-        <div>
-          <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-            Dentistas
-            <iconify-icon icon="solar:arrow-right-up-linear"
-              class="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-          </h3>
-          <p class="text-sm text-neutral-400 leading-relaxed">Transforme curiosos em pacientes fiéis.</p>
-        </div>
-      </div>
+      <!-- Marquee Track container -->
+      <div class="flex w-max animate-marquee hover:[animation-play-state:paused] group/track">
+        
+        <!-- FIRST SET OF CARDS -->
+        <div class="flex gap-4 pr-4">
+          <!-- Card Dentistas -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-cyan-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:tooth-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Dentistas
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Transforme curiosos em pacientes fiéis.</p>
+            </div>
+          </div>
 
-      <!-- Card Corretores -->
-      <div
-        class="glass-panel p-5 rounded-2xl flex items-start gap-4 text-left flex-1 border border-white/10 hover:bg-white/[0.06] transition-all group cursor-default animate-float-emerald hover:scale-105 duration-500">
-        <div
-          class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-110 transition-transform">
-          <iconify-icon icon="solar:home-smile-bold" width="24"></iconify-icon>
+          <!-- Card Corretores -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-emerald-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:home-smile-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Corretores
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Converta curiosos em clientes.</p>
+            </div>
+          </div>
+
+          <!-- Card Estética -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-fuchsia-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(217,70,239,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-fuchsia-500/10 flex items-center justify-center text-fuchsia-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:stars-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Estética
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-fuchsia-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Lotação máxima na sua agenda.</p>
+            </div>
+          </div>
+
+          <!-- Card Personal Trainer -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-amber-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:fire-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Personal Trainer
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Alunos engajados e resultados.</p>
+            </div>
+          </div>
+
+          <!-- Card Médicos -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-blue-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:medical-kit-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Médicos
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Mais agendamentos particulares.</p>
+            </div>
+          </div>
+
+          <!-- Card Advogados -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-purple-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:shield-check-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Advogados
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Autoridade que atrai alto valor.</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-            Corretores
-            <iconify-icon icon="solar:arrow-right-up-linear"
-              class="text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-          </h3>
-          <p class="text-sm text-neutral-400 leading-relaxed">Converta curiosos em clientes.</p>
+
+        <!-- SECOND SET OF CARDS (Duplicate for seamless loop) -->
+        <div class="flex gap-4 pr-4">
+          <!-- Card Dentistas -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-cyan-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:tooth-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Dentistas
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Transforme curiosos em pacientes fiéis.</p>
+            </div>
+          </div>
+
+          <!-- Card Corretores -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-emerald-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:home-smile-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Corretores
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Converta curiosos em clientes.</p>
+            </div>
+          </div>
+
+          <!-- Card Estética -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-fuchsia-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(217,70,239,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-fuchsia-500/10 flex items-center justify-center text-fuchsia-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:stars-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Estética
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-fuchsia-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Lotação máxima na sua agenda.</p>
+            </div>
+          </div>
+
+          <!-- Card Personal Trainer -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-amber-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:fire-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Personal Trainer
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Alunos engajados e resultados.</p>
+            </div>
+          </div>
+
+          <!-- Card Médicos -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-blue-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:medical-kit-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Médicos
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Mais agendamentos particulares.</p>
+            </div>
+          </div>
+
+          <!-- Card Advogados -->
+          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-purple-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
+            <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0 group-hover:scale-110 transition-transform">
+              <iconify-icon icon="solar:shield-check-bold" width="24"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
+                Advogados
+                <iconify-icon icon="solar:arrow-right-up-linear" class="text-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+              </h3>
+              <p class="text-sm text-neutral-400 leading-relaxed">Autoridade que atrai alto valor.</p>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
