@@ -166,6 +166,74 @@
     .terminal-scroll::-webkit-scrollbar-thumb:hover {
       background: rgba(6, 182, 212, 0.3);
     }
+
+    /* Custom CSS Switch styling to prevent layout issues and compilation bugs */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: .4s;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #737373;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: rgba(6, 182, 212, 0.2);
+      border-color: rgba(6, 182, 212, 0.4);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+      background-color: #06b6d4;
+    }
+
+    #toggle-scraper:checked + .slider {
+      background-color: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    #toggle-scraper:checked + .slider:before {
+      background-color: #10b981;
+    }
+
+    #toggle-nurturing:checked + .slider {
+      background-color: rgba(168, 85, 247, 0.2);
+      border-color: rgba(168, 85, 247, 0.4);
+    }
+
+    #toggle-nurturing:checked + .slider:before {
+      background-color: #a855f7;
+    }
   </style>
 </head>
 
@@ -308,9 +376,9 @@
                   <p class="text-[9px] text-neutral-500 mt-0.5" id="desc-whatsapp">Status: Standby</p>
                 </div>
               </div>
-              <label class="relative inline-flex items-center cursor-pointer select-none">
-                <input type="checkbox" class="sr-only peer" id="toggle-whatsapp">
-                <div class="w-10 h-5.5 bg-white/5 rounded-full peer peer-focus:outline-none peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-neutral-500 peer-checked:after:bg-cyan-400 after:rounded-full after:h-4.5 after:w-4.5 after:transition-all peer-checked:bg-cyan-500/20 border border-white/10 peer-checked:border-cyan-500/40"></div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-whatsapp">
+                <span class="slider"></span>
               </label>
             </div>
 
@@ -325,9 +393,9 @@
                   <p class="text-[9px] text-neutral-500 mt-0.5" id="desc-scraper">Status: Standby</p>
                 </div>
               </div>
-              <label class="relative inline-flex items-center cursor-pointer select-none">
-                <input type="checkbox" class="sr-only peer" id="toggle-scraper">
-                <div class="w-10 h-5.5 bg-white/5 rounded-full peer peer-focus:outline-none peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-neutral-500 peer-checked:after:bg-emerald-400 after:rounded-full after:h-4.5 after:w-4.5 after:transition-all peer-checked:bg-emerald-500/20 border border-white/10 peer-checked:border-emerald-500/40"></div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-scraper">
+                <span class="slider"></span>
               </label>
             </div>
 
@@ -342,9 +410,9 @@
                   <p class="text-[9px] text-neutral-500 mt-0.5" id="desc-nurturing">Status: Standby</p>
                 </div>
               </div>
-              <label class="relative inline-flex items-center cursor-pointer select-none">
-                <input type="checkbox" class="sr-only peer" id="toggle-nurturing">
-                <div class="w-10 h-5.5 bg-white/5 rounded-full peer peer-focus:outline-none peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-neutral-500 peer-checked:after:bg-purple-400 after:rounded-full after:h-4.5 after:w-4.5 after:transition-all peer-checked:bg-purple-500/20 border border-white/10 peer-checked:border-purple-500/40"></div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-nurturing">
+                <span class="slider"></span>
               </label>
             </div>
           </div>
