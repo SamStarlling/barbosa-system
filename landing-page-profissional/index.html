@@ -33,6 +33,7 @@
             'float-cyan': 'float 6s ease-in-out infinite, borderPulseCyan 4s ease-in-out infinite',
             'float-emerald': 'float 6s ease-in-out 3s infinite, borderPulseEmerald 4s ease-in-out 2s infinite',
             'marquee': 'marquee 35s linear infinite',
+            'pulse-soft': 'pulseSoft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
           },
           keyframes: {
             marquee: {
@@ -58,6 +59,10 @@
             borderPulseEmerald: {
               '0%, 100%': { borderColor: 'rgba(16, 185, 129, 0.15)', boxShadow: '0 0 20px -10px rgba(16, 185, 129, 0)' },
               '50%': { borderColor: 'rgba(16, 185, 129, 0.5)', boxShadow: '0 0 25px -5px rgba(16, 185, 129, 0.4)' },
+            },
+            pulseSoft: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.4' },
             }
           }
         }
@@ -76,29 +81,90 @@
     .bg-grid {
       background-size: 50px 50px;
       background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
     }
 
     /* Glassmorphism */
     .glass-panel {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.01);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     /* Glows */
     .glow-cyan {
-      box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.5);
+      box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.4);
     }
 
     .beam-v {
       width: 1px;
       height: 100%;
-      background: linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.6), transparent);
+      background: linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.5), transparent);
+    }
+
+    /* Border Beam Animation */
+    .border-beam-container {
+      position: relative;
+      border-radius: 1.5rem; /* 24px */
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+      will-change: transform;
+    }
+    
+    .border-beam-container::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 140deg,
+        rgba(6, 182, 212, 0.5) 180deg,
+        rgba(16, 185, 129, 0.5) 240deg,
+        transparent 280deg
+      );
+      animation: border-beam-spin 6s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .border-beam-content {
+      position: relative;
+      z-index: 10;
+      background: rgba(5, 5, 8, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: calc(1.5rem - 1px);
+      margin: 1px;
+      height: calc(100% - 2px);
+    }
+    
+    @keyframes border-beam-spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Custom scrollbar for terminal */
+    .terminal-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .terminal-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .terminal-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 2px;
+    }
+    .terminal-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(6, 182, 212, 0.3);
     }
   </style>
 </head>
@@ -158,37 +224,151 @@
   </nav>
 
   <!-- Hero Section -->
-  <main class="relative z-10 pt-48 pb-24 px-4 min-h-screen flex flex-col items-center justify-center text-center">
+  <main class="relative z-10 max-w-7xl mx-auto pt-44 pb-20 px-6 min-h-screen flex flex-col justify-center">
+    
+    <!-- Hero Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+      
+      <!-- Left Card (7/12 cols) - Proposta de Valor -->
+      <div class="lg:col-span-7 flex flex-col justify-between p-8 md:p-10 border border-white/5 rounded-3xl bg-neutral-950/40 backdrop-blur-xl relative overflow-hidden animate-fade-in-up" style="animation-delay: 0.1s;">
+        <!-- Glowing background overlay -->
+        <div class="absolute -top-12 -left-12 w-64 h-64 bg-cyan-900/10 blur-[100px] rounded-full pointer-events-none"></div>
+        
+        <div>
+          <!-- Badge Operational Status -->
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-[10px] uppercase font-mono tracking-widest text-cyan-300 mb-8 select-none">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+            </span>
+            Estúdio // Operacional
+          </div>
 
-    <div
-      class="group cursor-default inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-xs text-cyan-300 font-medium mb-8 animate-fade-in-up hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:shadow-[0_0_20px_-5px_rgba(6,182,212,0.4)] transition-all duration-300"
-      style="animation-delay: 0.1s;">
-      <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-        <span
-          class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500 group-hover:bg-cyan-400 transition-colors"></span>
-      </span>
-      Sites que geram confiança
+          <!-- Headline combining sans & serif -->
+          <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.05] mb-6 select-none">
+            Construímos sites de <br/>
+            <span class="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">alto padrão</span> <br class="hidden md:block"/>
+            & automações inteligentes.
+          </h1>
+
+          <!-- Description -->
+          <p class="text-base md:text-lg text-neutral-400 max-w-xl mb-10 leading-relaxed font-sans select-none">
+            Desenvolvemos landing pages de altíssima conversão e integramos agentes de atendimento de IA que trabalham 24/7. Design autoral, credibilidade de mercado e faturamento em escala.
+          </p>
+        </div>
+
+        <!-- CTA and Objections -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-6 mt-auto">
+          <button class="relative group px-8 py-4 bg-white text-black rounded-full font-bold text-sm overflow-hidden transition-all duration-300 hover:scale-102 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]">
+            <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-300 via-blue-300 to-emerald-300 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></div>
+            <span class="relative z-10 flex items-center justify-center gap-2">
+              Solicitar Orçamento Gratuito
+              <iconify-icon icon="solar:arrow-right-linear" width="16" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+            </span>
+          </button>
+          <div class="flex items-center gap-2 text-xs text-neutral-500 font-medium">
+            <iconify-icon icon="solar:smartphone-2-linear" class="text-cyan-400" width="18"></iconify-icon>
+            <span>Respostas em até 24h · Sem compromisso</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Card (5/12 cols) - Interactive Dashboard -->
+      <div class="lg:col-span-5 border-beam-container animate-fade-in-up" style="animation-delay: 0.3s;">
+        <div class="border-beam-content p-6 flex flex-col justify-between h-full">
+          
+          <!-- Mockup Window Header -->
+          <div class="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
+            <div class="flex items-center gap-2">
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80"></div>
+              </div>
+              <span class="text-[10px] text-neutral-500 font-mono ml-2">lumina_bot_panel.sh</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-[9px] font-mono bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded-md text-emerald-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              LIVE_SYSTEM
+            </div>
+          </div>
+
+          <!-- Interactive Switches (Automações) -->
+          <div class="space-y-4 mb-6">
+            <h3 class="text-xs uppercase font-mono tracking-widest text-neutral-500 pl-1 mb-2">Painel de Agentes</h3>
+            
+            <!-- WhatsApp Bot Switch -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-colors group cursor-pointer duration-300">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                  <iconify-icon icon="solar:chat-round-dots-bold" width="20"></iconify-icon>
+                </div>
+                <div>
+                  <h4 class="text-xs text-white font-semibold">Agente de Vendas WhatsApp</h4>
+                  <p class="text-[9px] text-neutral-500 mt-0.5" id="desc-whatsapp">Status: Standby</p>
+                </div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer select-none">
+                <input type="checkbox" class="sr-only peer" id="toggle-whatsapp">
+                <div class="w-10 h-5.5 bg-white/5 rounded-full peer peer-focus:outline-none peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-neutral-500 peer-checked:after:bg-cyan-400 after:rounded-full after:h-4.5 after:w-4.5 after:transition-all peer-checked:bg-cyan-500/20 border border-white/10 peer-checked:border-cyan-500/40"></div>
+              </label>
+            </div>
+
+            <!-- Lead Scraper Switch -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-colors group cursor-pointer duration-300">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                  <iconify-icon icon="solar:globus-bold" width="20"></iconify-icon>
+                </div>
+                <div>
+                  <h4 class="text-xs text-white font-semibold">Capturador Google Maps</h4>
+                  <p class="text-[9px] text-neutral-500 mt-0.5" id="desc-scraper">Status: Standby</p>
+                </div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer select-none">
+                <input type="checkbox" class="sr-only peer" id="toggle-scraper">
+                <div class="w-10 h-5.5 bg-white/5 rounded-full peer peer-focus:outline-none peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-neutral-500 peer-checked:after:bg-emerald-400 after:rounded-full after:h-4.5 after:w-4.5 after:transition-all peer-checked:bg-emerald-500/20 border border-white/10 peer-checked:border-emerald-500/40"></div>
+              </label>
+            </div>
+
+            <!-- Funil IA Switch -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-colors group cursor-pointer duration-300">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:scale-105 transition-transform">
+                  <iconify-icon icon="solar:diagram-up-bold" width="20"></iconify-icon>
+                </div>
+                <div>
+                  <h4 class="text-xs text-white font-semibold">Funil & Qualificação IA</h4>
+                  <p class="text-[9px] text-neutral-500 mt-0.5" id="desc-nurturing">Status: Standby</p>
+                </div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer select-none">
+                <input type="checkbox" class="sr-only peer" id="toggle-nurturing">
+                <div class="w-10 h-5.5 bg-white/5 rounded-full peer peer-focus:outline-none peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-neutral-500 peer-checked:after:bg-purple-400 after:rounded-full after:h-4.5 after:w-4.5 after:transition-all peer-checked:bg-purple-500/20 border border-white/10 peer-checked:border-purple-500/40"></div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Live Terminal Output Console -->
+          <div class="flex-1 bg-black/60 rounded-2xl border border-white/5 p-4 flex flex-col justify-between font-mono text-[10px] min-h-[160px] max-h-[180px] overflow-hidden">
+            <div class="flex items-center justify-between text-neutral-500 border-b border-white/5 pb-2 mb-2 select-none">
+              <span>Terminal de Operação</span>
+              <span class="text-[8px] animate-pulse-soft font-semibold text-cyan-400" id="terminal-pulse">STANDBY</span>
+            </div>
+            <!-- Logs Container -->
+            <div class="flex-1 overflow-y-auto terminal-scroll pr-1 flex flex-col gap-1.5 text-neutral-400 scroll-smooth" id="terminal-logs">
+              <div class="text-neutral-500 select-none">// Aguardando inicialização de processos...</div>
+              <div class="text-neutral-500 select-none">// Ative um agente acima para iniciar logs de atividade.</div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
     </div>
 
-    <!-- Headline (Premium serif mix like Barbershop/Savory) -->
-    <h1
-      class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl mx-auto leading-[1.1] mb-8 animate-fade-in-up"
-      style="animation-delay: 0.2s;">
-      A credibilidade que transforma <br class="hidden md:block" />
-      <span
-        class="font-serif italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">visitantes
-        em clientes</span>
-    </h1>
-
-    <p class="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up"
-      style="animation-delay: 0.3s;">
-      Sites profissionais que fazem o cliente pesquisar, confiar e fechar — <span class="text-white font-medium">sem
-        complicação!</span>
-    </p>
-
-    <!-- Mini-dores (Pain points) Carousel -->
-    <div class="w-full max-w-[100vw] overflow-hidden relative mb-14 animate-fade-in-up" style="animation-delay: 0.4s;">
+    <!-- Mini-dores (Pain points) Marquee - Repurposed -->
+    <div class="w-full overflow-hidden relative py-4 border-y border-white/5 animate-fade-in-up" style="animation-delay: 0.5s;">
       
       <!-- Gradient Fade Masks -->
       <div class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#030305] to-transparent z-10 pointer-events-none"></div>
@@ -198,289 +378,222 @@
       <div class="flex w-max animate-marquee hover:[animation-play-state:paused] group/track">
         
         <!-- FIRST SET OF CARDS -->
-        <div class="flex gap-4 pr-4">
-          <!-- Card Dentistas -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-cyan-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:tooth-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Dentistas
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Transforme curiosos em pacientes fiéis.</p>
-            </div>
-          </div>
-
-          <!-- Card Corretores -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-emerald-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:home-smile-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Corretores
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Converta curiosos em clientes.</p>
-            </div>
-          </div>
-
-          <!-- Card Estética -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-fuchsia-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(217,70,239,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-fuchsia-500/10 flex items-center justify-center text-fuchsia-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:stars-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Estética
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-fuchsia-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Lotação máxima na sua agenda.</p>
-            </div>
-          </div>
-
-          <!-- Card Personal Trainer -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-amber-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:fire-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Personal Trainer
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Alunos engajados e resultados.</p>
-            </div>
-          </div>
-
-          <!-- Card Médicos -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-blue-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:medical-kit-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Médicos
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Mais agendamentos particulares.</p>
-            </div>
-          </div>
-
-          <!-- Card Advogados -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-purple-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:shield-check-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Advogados
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Autoridade que atrai alto valor.</p>
-            </div>
-          </div>
+        <div class="flex gap-12 pr-12 items-center">
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-cyan-400"></iconify-icon>
+            Médicos & Clínicas
+          </span>
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-emerald-400"></iconify-icon>
+            Corretores & Imobiliárias
+          </span>
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-purple-400"></iconify-icon>
+            Escritórios de Advocacia
+          </span>
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-cyan-400"></iconify-icon>
+            E-commerces & Lojas
+          </span>
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-emerald-400"></iconify-icon>
+            Startups & SaaS
+          </span>
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-purple-400"></iconify-icon>
+            Infoprodutores & Especialistas
+          </span>
         </div>
 
         <!-- SECOND SET OF CARDS (Duplicate for seamless loop) -->
-        <div class="flex gap-4 pr-4">
-          <!-- Card Dentistas -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-cyan-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:tooth-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Dentistas
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Transforme curiosos em pacientes fiéis.</p>
-            </div>
-          </div>
-
-          <!-- Card Corretores -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-emerald-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:home-smile-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Corretores
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Converta curiosos em clientes.</p>
-            </div>
-          </div>
-
-          <!-- Card Estética -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-fuchsia-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(217,70,239,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-fuchsia-500/10 flex items-center justify-center text-fuchsia-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:stars-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Estética
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-fuchsia-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Lotação máxima na sua agenda.</p>
-            </div>
-          </div>
-
-          <!-- Card Personal Trainer -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-amber-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:fire-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Personal Trainer
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Alunos engajados e resultados.</p>
-            </div>
-          </div>
-
-          <!-- Card Médicos -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-blue-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:medical-kit-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Médicos
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Mais agendamentos particulares.</p>
-            </div>
-          </div>
-
-          <!-- Card Advogados -->
-          <div class="w-[280px] shrink-0 glass-panel p-5 rounded-2xl flex items-start gap-4 text-left border border-white/10 hover:border-purple-500/60 hover:bg-white/[0.08] transition-all cursor-default group hover:scale-105 duration-300 hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.3)] opacity-100 group-hover/track:opacity-40 hover:!opacity-100">
-            <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0 group-hover:scale-110 transition-transform">
-              <iconify-icon icon="solar:shield-check-bold" width="24"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold mb-1 flex items-center gap-2">
-                Advogados
-                <iconify-icon icon="solar:arrow-right-up-linear" class="text-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
-              </h3>
-              <p class="text-sm text-neutral-400 leading-relaxed">Autoridade que atrai alto valor.</p>
-            </div>
-          </div>
+        <div class="flex gap-12 pr-12 items-center">
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-cyan-400"></iconify-icon>
+            Médicos & Clínicas
+          </span>
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-emerald-400"></iconify-icon>
+            Corretores & Imobiliárias
+          </span>
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-purple-400"></iconify-icon>
+            Escritórios de Advocacia
+          </span>
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-cyan-400"></iconify-icon>
+            E-commerces & Lojas
+          </span>
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-emerald-400"></iconify-icon>
+            Startups & SaaS
+          </span>
+          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+            <iconify-icon icon="solar:star-bold" class="text-purple-400"></iconify-icon>
+            Infoprodutores & Especialistas
+          </span>
         </div>
 
-      </div>
-    </div>
-
-    <!-- CTA Area -->
-    <div class="flex flex-col items-center gap-5 mb-24 animate-fade-in-up" style="animation-delay: 0.5s;">
-      <button
-        class="relative group px-10 py-5 bg-white text-black rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 glow-cyan">
-        <div
-          class="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-300 via-blue-300 to-emerald-300 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0">
-        </div>
-        <span class="relative z-10 flex items-center gap-3">
-          Solicitar orçamento gratuito
-          <div
-            class="w-8 h-8 bg-black/10 rounded-full flex items-center justify-center group-hover:bg-black/20 transition-colors">
-            <iconify-icon icon="solar:arrow-right-linear" width="18"
-              class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-          </div>
-        </span>
-      </button>
-
-      <div
-        class="flex items-center gap-2 text-sm text-neutral-500 bg-white/5 px-4 py-1.5 rounded-full border border-white/5">
-        <iconify-icon icon="solar:smartphone-2-linear" class="text-cyan-500" width="18"></iconify-icon>
-        <span>Respondo em até 24h · Sem compromisso</span>
-      </div>
-    </div>
-
-    <!-- Mockup / Image (Futuristic UI Presentation) -->
-    <div class="w-full max-w-5xl mx-auto relative animate-float opacity-0 animate-fade-in-up"
-      style="animation-delay: 0.6s; animation-fill-mode: forwards;">
-      <!-- Decorative glow behind mockup -->
-      <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-cyan-500/20 blur-[120px] z-0">
-      </div>
-
-      <!-- Browser Mockup Window -->
-      <div
-        class="relative z-10 rounded-xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] border border-white/10 ring-1 ring-white/5 backdrop-blur-md bg-black/40">
-
-        <!-- Browser header -->
-        <div class="bg-black/80 border-b border-white/5 px-4 py-3 flex items-center gap-2">
-          <div class="flex gap-2">
-            <div class="w-3 h-3 rounded-full bg-[#FF5F56] border border-black/10"></div>
-            <div class="w-3 h-3 rounded-full bg-[#FFBD2E] border border-black/10"></div>
-            <div class="w-3 h-3 rounded-full bg-[#27C93F] border border-black/10"></div>
-          </div>
-          <div
-            class="mx-auto flex items-center gap-2 bg-white/5 rounded-md px-32 py-1.5 text-[11px] text-neutral-400 font-mono border border-white/5">
-            <iconify-icon icon="solar:lock-keyhole-minimalistic-linear" width="12"></iconify-icon>
-            seusite.com.br
-          </div>
-        </div>
-
-        <!-- Mockup Content (Abstract visual representation of a premium landing page) -->
-        <div class="aspect-[16/9] bg-[#050505] relative overflow-hidden flex items-center justify-center p-8">
-          <div
-            class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyan-900/30 via-[#050505] to-[#050505]">
-          </div>
-
-          <div class="w-full h-full border border-white/5 rounded-xl bg-white/[0.02] relative overflow-hidden flex">
-
-            <!-- Sidebar abstract -->
-            <div class="w-1/4 h-full border-r border-white/5 p-6 flex flex-col gap-6">
-              <div class="w-12 h-12 bg-cyan-500/20 rounded-lg border border-cyan-500/30"></div>
-              <div class="space-y-3">
-                <div class="w-full h-3 bg-white/10 rounded-full"></div>
-                <div class="w-3/4 h-3 bg-white/10 rounded-full"></div>
-                <div class="w-5/6 h-3 bg-white/10 rounded-full"></div>
-              </div>
-              <div class="mt-auto w-full h-10 bg-cyan-500/10 rounded-lg border border-cyan-500/20"></div>
-            </div>
-
-            <!-- Main content abstract -->
-            <div class="w-3/4 h-full p-8 relative">
-              <!-- Abstract Hero -->
-              <div class="w-32 h-6 bg-cyan-500/20 rounded-full mb-6"></div>
-              <div class="w-3/4 h-12 bg-white/90 rounded-lg mb-4"></div>
-              <div class="w-1/2 h-12 bg-white/90 rounded-lg mb-8"></div>
-              <div class="w-2/3 h-4 bg-white/20 rounded-full mb-3"></div>
-              <div class="w-1/2 h-4 bg-white/20 rounded-full mb-10"></div>
-
-              <div class="flex gap-4 mb-12">
-                <div class="w-32 h-12 bg-cyan-500 rounded-lg shadow-[0_0_20px_rgba(6,182,212,0.4)]"></div>
-                <div class="w-32 h-12 border border-white/20 rounded-lg"></div>
-              </div>
-
-              <!-- Abstract Cards -->
-              <div class="flex gap-4 absolute bottom-8 left-8 right-8">
-                <div class="flex-1 h-32 bg-white/5 border border-white/10 rounded-xl p-4">
-                  <div class="w-8 h-8 rounded-full bg-white/10 mb-4"></div>
-                  <div class="w-full h-2 bg-white/20 rounded-full mb-2"></div>
-                  <div class="w-2/3 h-2 bg-white/10 rounded-full"></div>
-                </div>
-                <div class="flex-1 h-32 bg-white/5 border border-white/10 rounded-xl p-4">
-                  <div class="w-8 h-8 rounded-full bg-white/10 mb-4"></div>
-                  <div class="w-full h-2 bg-white/20 rounded-full mb-2"></div>
-                  <div class="w-2/3 h-2 bg-white/10 rounded-full"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Scanline effect overlay for mockup -->
-            <div
-              class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.1)_51%)] bg-[length:100%_4px] pointer-events-none opacity-20">
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </main>
+
+  <script>
+    // State management
+    const state = {
+      whatsapp: false,
+      scraper: false,
+      nurturing: false
+    };
+
+    // Log databases for simulation
+    const logsDb = {
+      whatsapp: [
+        "Conexão com API do WhatsApp: OK",
+        "Aguardando novos leads na fila...",
+        "Mensagem recebida de lead #042: 'Olá, gostaria de saber mais'",
+        "Disparando resposta personalizada via LLM...",
+        "Lead qualificado! Interesse: Criação de site premium",
+        "Enviando link de agendamento automático.",
+        "Resposta enviada com sucesso em 1.2s."
+      ],
+      scraper: [
+        "Iniciando raspagem de leads no Google Maps...",
+        "Buscando termo: 'Clínicas Médicas em São Paulo'",
+        "Localizado: Clínica Reabilitar - Tel: (11) 98888-2231",
+        "Localizado: Consultório Dra. Ana - Tel: (11) 97777-1144",
+        "Salvo na planilha de prospecção fria.",
+        "Agente inteligente: Enviando primeiro contato automático..."
+      ],
+      nurturing: [
+        "Monitorando banco de dados de leads...",
+        "Lead #042 inativo há 24h. Iniciando reengajamento.",
+        "Redigindo e-mail personalizado com prova social.",
+        "E-mail enviado! Assunto: 'Como dobramos o tráfego da Clínica X'",
+        "Notificação: E-mail aberto pelo lead #042",
+        "Gatilho: Lead clicou no link de orçamento."
+      ]
+    };
+
+    // Intervals for running logs
+    const logIntervals = {
+      whatsapp: null,
+      scraper: null,
+      nurturing: null
+    };
+
+    const terminalLogs = document.getElementById('terminal-logs');
+    const terminalPulse = document.getElementById('terminal-pulse');
+
+    function appendLog(text, colorClass = 'text-neutral-400') {
+      const logLine = document.createElement('div');
+      logLine.className = `flex gap-2 animate-fade-in-up ${colorClass}`;
+      
+      const time = new Date().toLocaleTimeString('pt-BR', { hour12: false });
+      logLine.innerHTML = `<span class="text-neutral-600 select-none">[${time}]</span> <span>${text}</span>`;
+      
+      terminalLogs.appendChild(logLine);
+      terminalLogs.scrollTop = terminalLogs.scrollHeight;
+    }
+
+    function updateTerminalPulse() {
+      const anyActive = state.whatsapp || state.scraper || state.nurturing;
+      if (anyActive) {
+        terminalPulse.textContent = "OPERANDO";
+        terminalPulse.className = "text-[8px] animate-pulse font-semibold text-emerald-400";
+      } else {
+        terminalPulse.textContent = "STANDBY";
+        terminalPulse.className = "text-[8px] animate-pulse-soft font-semibold text-cyan-400";
+      }
+    }
+
+    function startServiceLog(service) {
+      if (logIntervals[service]) clearInterval(logIntervals[service]);
+      
+      let index = 0;
+      // Inicia imediatamente a primeira linha
+      const logs = logsDb[service];
+      appendLog(`[SISTEMA] Iniciando serviço: ${service.toUpperCase()}...`, 'text-cyan-300 font-semibold');
+      appendLog(logs[index % logs.length]);
+      index++;
+
+      logIntervals[service] = setInterval(() => {
+        appendLog(logs[index % logs.length]);
+        index++;
+      }, 3500); // Adiciona logs a cada 3.5 segundos
+    }
+
+    function stopServiceLog(service) {
+      if (logIntervals[service]) {
+        clearInterval(logIntervals[service]);
+        logIntervals[service] = null;
+      }
+      appendLog(`[SISTEMA] Serviço suspenso: ${service.toUpperCase()}`, 'text-orange-400/80 font-medium');
+    }
+
+    // Toggle Handlers
+    document.getElementById('toggle-whatsapp').addEventListener('change', (e) => {
+      state.whatsapp = e.target.checked;
+      const desc = document.getElementById('desc-whatsapp');
+      if (state.whatsapp) {
+        desc.innerHTML = 'Status: <span class="text-cyan-400 font-semibold animate-pulse-soft">Ativo & Operando</span>';
+        startServiceLog('whatsapp');
+      } else {
+        desc.innerHTML = 'Status: Standby';
+        stopServiceLog('whatsapp');
+      }
+      updateTerminalPulse();
+    });
+
+    document.getElementById('toggle-scraper').addEventListener('change', (e) => {
+      state.scraper = e.target.checked;
+      const desc = document.getElementById('desc-scraper');
+      if (state.scraper) {
+        desc.innerHTML = 'Status: <span class="text-emerald-400 font-semibold animate-pulse-soft">Ativo & Operando</span>';
+        startServiceLog('scraper');
+      } else {
+        desc.innerHTML = 'Status: Standby';
+        stopServiceLog('scraper');
+      }
+      updateTerminalPulse();
+    });
+
+    document.getElementById('toggle-nurturing').addEventListener('change', (e) => {
+      state.nurturing = e.target.checked;
+      const desc = document.getElementById('desc-nurturing');
+      if (state.nurturing) {
+        desc.innerHTML = 'Status: <span class="text-purple-400 font-semibold animate-pulse-soft">Ativo & Operando</span>';
+        startServiceLog('nurturing');
+      } else {
+        desc.innerHTML = 'Status: Standby';
+        stopServiceLog('nurturing');
+      }
+      updateTerminalPulse();
+    });
+
+    // 3D Parallax Tilt Effect for Bento Cards
+    const cards = document.querySelectorAll('.border-beam-container, .lg\\:col-span-7');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xc = rect.width / 2;
+        const yc = rect.height / 2;
+        
+        const angleX = (yc - y) / 25; // Sensibilidade
+        const angleY = (x - xc) / 25;
+        
+        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.01, 1.01, 1.01)`;
+        card.style.boxShadow = `0 15px 35px -10px rgba(6, 182, 212, 0.15)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        card.style.boxShadow = 'none';
+      });
+    });
+  </script>
 
 </body>
 
