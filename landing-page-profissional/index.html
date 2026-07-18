@@ -167,72 +167,62 @@
       background: rgba(6, 182, 212, 0.3);
     }
 
-    /* Custom CSS Switch styling to prevent layout issues and compilation bugs */
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 44px;
-      height: 24px;
-      flex-shrink: 0;
+    /* Custom Glow classes for active Vercel-style radio cards */
+    .card-active-whatsapp {
+      border-color: rgba(6, 182, 212, 0.4) !important;
+      background: rgba(6, 182, 212, 0.03) !important;
+      box-shadow: 0 0 20px -5px rgba(6, 182, 212, 0.25);
+      opacity: 1 !important;
+    }
+    .card-active-scraper {
+      border-color: rgba(16, 185, 129, 0.4) !important;
+      background: rgba(16, 185, 129, 0.03) !important;
+      box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.25);
+      opacity: 1 !important;
+    }
+    .card-active-nurturing {
+      border-color: rgba(168, 85, 247, 0.4) !important;
+      background: rgba(168, 85, 247, 0.03) !important;
+      box-shadow: 0 0 20px -5px rgba(168, 85, 247, 0.25);
+      opacity: 1 !important;
     }
 
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
+    /* Pipeline connector anim streaks */
+    @keyframes connector-streak {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+    .animate-connector-cyan {
+      animation: connector-streak 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      background: linear-gradient(to right, transparent, #06b6d4, transparent) !important;
+    }
+    .animate-connector-emerald {
+      animation: connector-streak 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      background: linear-gradient(to right, transparent, #10b981, transparent) !important;
+    }
+    .animate-connector-purple {
+      animation: connector-streak 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      background: linear-gradient(to right, transparent, #a855f7, transparent) !important;
     }
 
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(255, 255, 255, 0.05);
-      transition: .4s;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Step states */
+    .step-active-cyan {
+      border-color: rgba(6, 182, 212, 0.5) !important;
+      background-color: rgba(6, 182, 212, 0.15) !important;
+      color: #22d3ee !important; /* cyan-400 */
+      box-shadow: 0 0 15px -3px rgba(6, 182, 212, 0.5);
     }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 16px;
-      width: 16px;
-      left: 3px;
-      bottom: 3px;
-      background-color: #737373;
-      transition: .4s;
-      border-radius: 50%;
+    .step-active-emerald {
+      border-color: rgba(16, 185, 129, 0.5) !important;
+      background-color: rgba(16, 185, 129, 0.15) !important;
+      color: #34d399 !important; /* emerald-400 */
+      box-shadow: 0 0 15px -3px rgba(16, 185, 129, 0.5);
     }
-
-    input:checked + .slider {
-      background-color: rgba(6, 182, 212, 0.2);
-      border-color: rgba(6, 182, 212, 0.4);
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(20px);
-      background-color: #06b6d4;
-    }
-
-    #toggle-scraper:checked + .slider {
-      background-color: rgba(16, 185, 129, 0.2);
-      border-color: rgba(16, 185, 129, 0.4);
-    }
-
-    #toggle-scraper:checked + .slider:before {
-      background-color: #10b981;
-    }
-
-    #toggle-nurturing:checked + .slider {
-      background-color: rgba(168, 85, 247, 0.2);
-      border-color: rgba(168, 85, 247, 0.4);
-    }
-
-    #toggle-nurturing:checked + .slider:before {
-      background-color: #a855f7;
+    .step-active-purple {
+      border-color: rgba(168, 85, 247, 0.5) !important;
+      background-color: rgba(168, 85, 247, 0.15) !important;
+      color: #c084fc !important; /* purple-400 */
+      box-shadow: 0 0 15px -3px rgba(168, 85, 247, 0.5);
     }
   </style>
 </head>
@@ -361,73 +351,147 @@
             </div>
           </div>
 
-          <!-- Interactive Switches (Automações) -->
-          <div class="space-y-4 mb-6">
-            <h3 class="text-xs uppercase font-mono tracking-widest text-neutral-500 pl-1 mb-2">Painel de Agentes</h3>
+          <!-- Interactive Cards (Automações V2) -->
+          <div class="space-y-3.5 mb-6" id="agent-cards-container">
             
-            <!-- WhatsApp Bot Switch -->
-            <div class="flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-colors group cursor-pointer duration-300">
+            <!-- WhatsApp Bot Card -->
+            <div id="card-whatsapp" class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 card-active-whatsapp">
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                <div class="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform" id="icon-container-whatsapp">
                   <iconify-icon icon="solar:chat-round-dots-bold" width="20"></iconify-icon>
                 </div>
                 <div>
                   <h4 class="text-xs text-white font-semibold">Agente de Vendas WhatsApp</h4>
-                  <p class="text-[9px] text-neutral-500 mt-0.5" id="desc-whatsapp">Status: Standby</p>
+                  <p class="text-[9px] text-neutral-500 mt-0.5 font-medium" id="desc-whatsapp">Funil de Atendimento Automatizado</p>
                 </div>
               </div>
-              <label class="switch">
-                <input type="checkbox" id="toggle-whatsapp">
-                <span class="slider"></span>
-              </label>
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[9px] font-mono font-medium text-cyan-300 select-none" id="badge-whatsapp">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                ATIVO
+              </div>
             </div>
 
-            <!-- Lead Scraper Switch -->
-            <div class="flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-colors group cursor-pointer duration-300">
+            <!-- Lead Scraper Card -->
+            <div id="card-scraper" class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 opacity-40">
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                <div class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform" id="icon-container-scraper">
                   <iconify-icon icon="solar:globus-bold" width="20"></iconify-icon>
                 </div>
                 <div>
                   <h4 class="text-xs text-white font-semibold">Capturador Google Maps</h4>
-                  <p class="text-[9px] text-neutral-500 mt-0.5" id="desc-scraper">Status: Standby</p>
+                  <p class="text-[9px] text-neutral-500 mt-0.5 font-medium" id="desc-scraper">Mapeamento de Leads Locais</p>
                 </div>
               </div>
-              <label class="switch">
-                <input type="checkbox" id="toggle-scraper">
-                <span class="slider"></span>
-              </label>
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.02] border border-white/5 text-[9px] font-mono font-medium text-neutral-500 select-none" id="badge-scraper">
+                <span class="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                Standby
+              </div>
             </div>
 
-            <!-- Funil IA Switch -->
-            <div class="flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-colors group cursor-pointer duration-300">
+            <!-- Funil IA Card -->
+            <div id="card-nurturing" class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 opacity-40">
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:scale-105 transition-transform">
+                <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:scale-105 transition-transform" id="icon-container-nurturing">
                   <iconify-icon icon="solar:diagram-up-bold" width="20"></iconify-icon>
                 </div>
                 <div>
                   <h4 class="text-xs text-white font-semibold">Funil & Qualificação IA</h4>
-                  <p class="text-[9px] text-neutral-500 mt-0.5" id="desc-nurturing">Status: Standby</p>
+                  <p class="text-[9px] text-neutral-500 mt-0.5 font-medium" id="desc-nurturing">Engajamento & Disparo Inteligente</p>
                 </div>
               </div>
-              <label class="switch">
-                <input type="checkbox" id="toggle-nurturing">
-                <span class="slider"></span>
-              </label>
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.02] border border-white/5 text-[9px] font-mono font-medium text-neutral-500 select-none" id="badge-nurturing">
+                <span class="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                Standby
+              </div>
             </div>
           </div>
 
-          <!-- Live Terminal Output Console -->
-          <div class="flex-1 bg-black/60 rounded-2xl border border-white/5 p-4 flex flex-col justify-between font-mono text-[10px] min-h-[160px] max-h-[180px] overflow-hidden">
-            <div class="flex items-center justify-between text-neutral-500 border-b border-white/5 pb-2 mb-2 select-none">
-              <span>Terminal de Operação</span>
-              <span class="text-[8px] animate-pulse-soft font-semibold text-cyan-400" id="terminal-pulse">STANDBY</span>
+          <!-- Visualizer & Metrics Panel V2 -->
+          <div class="flex flex-col gap-4">
+            
+            <!-- Visual Flow Diagram -->
+            <div class="bg-black/30 border border-white/5 rounded-2xl p-4 select-none relative overflow-hidden flex items-center justify-between">
+              <!-- Step 1 -->
+              <div class="flex flex-col items-center gap-1 z-10 w-20 text-center" id="step-1">
+                <div class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 step-active-cyan transition-all duration-300" id="step-1-icon">
+                  <iconify-icon icon="solar:login-2-linear" width="16"></iconify-icon>
+                </div>
+                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1" id="step-1-label">Novo Lead</span>
+              </div>
+
+              <!-- Connector 1 -->
+              <div class="flex-1 h-[1px] bg-white/10 mx-2 relative overflow-hidden rounded-full">
+                <div class="absolute inset-0 w-full h-full -translate-x-full animate-connector-cyan" id="connector-1"></div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="flex flex-col items-center gap-1 z-10 w-20 text-center" id="step-2">
+                <div class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300" id="step-2-icon">
+                  <iconify-icon icon="solar:cpu-linear" width="16"></iconify-icon>
+                </div>
+                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1" id="step-2-label">Qualificar</span>
+              </div>
+
+              <!-- Connector 2 -->
+              <div class="flex-1 h-[1px] bg-white/10 mx-2 relative overflow-hidden rounded-full">
+                <div class="absolute inset-0 w-full h-full -translate-x-full animate-connector-cyan" id="connector-2"></div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="flex flex-col items-center gap-1 z-10 w-20 text-center" id="step-3">
+                <div class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300" id="step-3-icon">
+                  <iconify-icon icon="solar:chat-round-dots-linear" width="16"></iconify-icon>
+                </div>
+                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1" id="step-3-label">Mensagem</span>
+              </div>
             </div>
-            <!-- Logs Container -->
-            <div class="flex-1 overflow-y-auto terminal-scroll pr-1 flex flex-col gap-1.5 text-neutral-400 scroll-smooth" id="terminal-logs">
-              <div class="text-neutral-500 select-none">// Aguardando inicialização de processos...</div>
-              <div class="text-neutral-500 select-none">// Ative um agente acima para iniciar logs de atividade.</div>
+
+            <!-- Two-Column KPI Metrics -->
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-black/30 border border-white/5 rounded-2xl p-4 flex flex-col justify-between">
+                <span class="text-[9px] font-mono uppercase tracking-widest text-neutral-500 select-none">Métricas Totais</span>
+                <div class="flex items-baseline gap-2 mt-2">
+                  <span class="text-2xl font-bold text-white font-mono tracking-tight" id="metric-kpi-val">47</span>
+                  <span class="text-[9px] text-emerald-400 font-mono flex items-center gap-0.5">
+                    <iconify-icon icon="solar:trending-up-linear"></iconify-icon>+14%
+                  </span>
+                </div>
+                <span class="text-[8px] text-neutral-500 mt-1 select-none" id="metric-kpi-lbl">Leads Qualificados</span>
+              </div>
+
+              <div class="bg-black/30 border border-white/5 rounded-2xl p-4 flex flex-col justify-between">
+                <span class="text-[9px] font-mono uppercase tracking-widest text-neutral-500 select-none">Precisão da IA</span>
+                <div class="flex items-baseline gap-2 mt-2">
+                  <span class="text-2xl font-bold text-white font-mono tracking-tight" id="metric-precision-val">98.4%</span>
+                  <span class="text-[9px] text-cyan-400 font-mono">GPT-4o</span>
+                </div>
+                <span class="text-[8px] text-neutral-500 mt-1 select-none">Sem erros de fluxo</span>
+              </div>
             </div>
+
+            <!-- Friendly Events Timeline Feed -->
+            <div class="bg-black/30 border border-white/5 rounded-2xl p-4 flex flex-col gap-3 min-h-[140px] max-h-[140px] overflow-hidden select-none">
+              <span class="text-[9px] font-mono uppercase tracking-widest text-neutral-500 border-b border-white/5 pb-2">Timeline de Atividades</span>
+              <div class="flex flex-col gap-2.5 overflow-y-auto terminal-scroll pr-1" id="timeline-events-feed">
+                <!-- Initial Event 1 -->
+                <div class="flex items-start gap-2.5 text-[10px] text-neutral-400 animate-fade-in-up">
+                  <iconify-icon icon="solar:check-circle-bold" class="text-cyan-400 mt-0.5" width="12"></iconify-icon>
+                  <div class="flex-1 leading-normal text-neutral-300">
+                    <span class="text-neutral-600 font-mono mr-1.5" id="log-time-1">20:01:22</span>
+                    <span>Conexão estabelecida com sucesso com o WhatsApp API.</span>
+                  </div>
+                </div>
+                <!-- Initial Event 2 -->
+                <div class="flex items-start gap-2.5 text-[10px] text-neutral-400 animate-fade-in-up" style="animation-delay: 0.1s;">
+                  <iconify-icon icon="solar:check-circle-bold" class="text-cyan-400 mt-0.5" width="12"></iconify-icon>
+                  <div class="flex-1 leading-normal text-neutral-300">
+                    <span class="text-neutral-600 font-mono mr-1.5" id="log-time-2">20:01:25</span>
+                    <span>Agente de Vendas em prontidão. Aguardando gatilhos.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
           
         </div>
@@ -506,137 +570,194 @@
   </main>
 
   <script>
-    // State management
-    const state = {
-      whatsapp: false,
-      scraper: false,
-      nurturing: false
+    // Configurations for each agent
+    const agentConfigs = {
+      whatsapp: {
+        color: 'cyan',
+        precision: '98.4%',
+        kpiLabel: 'Leads Qualificados',
+        kpiStart: 47,
+        steps: [
+          { label: 'Novo Lead', icon: 'solar:login-2-linear' },
+          { label: 'Qualificar IA', icon: 'solar:cpu-linear' },
+          { label: 'Mensagem', icon: 'solar:chat-round-dots-linear' }
+        ],
+        logs: [
+          "Novo lead qualificado como 'Interessado: Alta Conversão'",
+          "Prompt qualificador disparado com sucesso",
+          "WhatsApp bot enviou resposta automatizada",
+          "Lead #042 clicou no link de agendamento",
+          "Sincronização efetuada na agenda do WhatsApp",
+          "Agente de vendas qualificador aguardando novos gatilhos"
+        ]
+      },
+      scraper: {
+        color: 'emerald',
+        precision: '99.1%',
+        kpiLabel: 'Empresas Mapeadas',
+        kpiStart: 184,
+        steps: [
+          { label: 'Pesquisa Local', icon: 'solar:globus-linear' },
+          { label: 'Filtro Inteligente', icon: 'solar:shield-check-linear' },
+          { label: 'Lista Salva', icon: 'solar:folder-with-files-linear' }
+        ],
+        logs: [
+          "Iniciando busca por 'Clínicas Médicas em São Paulo'",
+          "Maps Scraper: Extraindo dados de localização e contato",
+          "Filtrados 14 contatos válidos (Telefone/WhatsApp)",
+          "Planilha exportada para o banco de dados",
+          "Disparador: Iniciando qualificação prévia de leads",
+          "Pesquisa local finalizada. Aguardando novo termo."
+        ]
+      },
+      nurturing: {
+        color: 'purple',
+        precision: '97.8%',
+        kpiLabel: 'Disparos Ativos',
+        kpiStart: 89,
+        steps: [
+          { label: 'Gatilho CRM', icon: 'solar:card-recieved-linear' },
+          { label: 'Personalizar', icon: 'solar:pen-new-square-linear' },
+          { label: 'Enviar E-mail', icon: 'solar:letter-linear' }
+        ],
+        logs: [
+          "Lead inativo detectado (Gatilho: 24h sem resposta)",
+          "LLM gerando e-mail personalizado com prova social",
+          "CRM Flow: E-mail de reengajamento enviado com sucesso",
+          "Mapeado: E-mail aberto pelo destinatário",
+          "Sucesso: Lead respondeu solicitando chamada comercial",
+          "Processo de nutrição IA aguardando próxima fila"
+        ]
+      }
     };
 
-    // Log databases for simulation
-    const logsDb = {
-      whatsapp: [
-        "Conexão com API do WhatsApp: OK",
-        "Aguardando novos leads na fila...",
-        "Mensagem recebida de lead #042: 'Olá, gostaria de saber mais'",
-        "Disparando resposta personalizada via LLM...",
-        "Lead qualificado! Interesse: Criação de site premium",
-        "Enviando link de agendamento automático.",
-        "Resposta enviada com sucesso em 1.2s."
-      ],
-      scraper: [
-        "Iniciando raspagem de leads no Google Maps...",
-        "Buscando termo: 'Clínicas Médicas em São Paulo'",
-        "Localizado: Clínica Reabilitar - Tel: (11) 98888-2231",
-        "Localizado: Consultório Dra. Ana - Tel: (11) 97777-1144",
-        "Salvo na planilha de prospecção fria.",
-        "Agente inteligente: Enviando primeiro contato automático..."
-      ],
-      nurturing: [
-        "Monitorando banco de dados de leads...",
-        "Lead #042 inativo há 24h. Iniciando reengajamento.",
-        "Redigindo e-mail personalizado com prova social.",
-        "E-mail enviado! Assunto: 'Como dobramos o tráfego da Clínica X'",
-        "Notificação: E-mail aberto pelo lead #042",
-        "Gatilho: Lead clicou no link de orçamento."
-      ]
-    };
+    let activeAgent = 'whatsapp';
+    let sequencerTimer = null;
+    let mainSimulationTimer = null;
+    let metricVal = agentConfigs.whatsapp.kpiStart;
 
-    // Intervals for running logs
-    const logIntervals = {
-      whatsapp: null,
-      scraper: null,
-      nurturing: null
-    };
-
-    const terminalLogs = document.getElementById('terminal-logs');
-    const terminalPulse = document.getElementById('terminal-pulse');
-
-    function appendLog(text, colorClass = 'text-neutral-400') {
-      const logLine = document.createElement('div');
-      logLine.className = `flex gap-2 animate-fade-in-up ${colorClass}`;
-      
+    function appendFriendlyLog(text, colorClass = 'text-neutral-300') {
+      const feed = document.getElementById('timeline-events-feed');
       const time = new Date().toLocaleTimeString('pt-BR', { hour12: false });
-      logLine.innerHTML = `<span class="text-neutral-600 select-none">[${time}]</span> <span>${text}</span>`;
       
-      terminalLogs.appendChild(logLine);
-      terminalLogs.scrollTop = terminalLogs.scrollHeight;
-    }
-
-    function updateTerminalPulse() {
-      const anyActive = state.whatsapp || state.scraper || state.nurturing;
-      if (anyActive) {
-        terminalPulse.textContent = "OPERANDO";
-        terminalPulse.className = "text-[8px] animate-pulse font-semibold text-emerald-400";
-      } else {
-        terminalPulse.textContent = "STANDBY";
-        terminalPulse.className = "text-[8px] animate-pulse-soft font-semibold text-cyan-400";
+      const logItem = document.createElement('div');
+      logItem.className = 'flex items-start gap-2.5 text-[10px] text-neutral-400 animate-fade-in-up';
+      
+      const config = agentConfigs[activeAgent];
+      const iconColor = colorClass.includes('font-semibold') ? colorClass : `text-${config.color}-400`;
+      
+      logItem.innerHTML = `
+        <iconify-icon icon="solar:check-circle-bold" class="${iconColor} mt-0.5" width="12"></iconify-icon>
+        <div class="flex-1 leading-normal ${colorClass}">
+          <span class="text-neutral-600 font-mono mr-1.5 select-none">${time}</span>
+          <span>${text}</span>
+        </div>
+      `;
+      
+      feed.appendChild(logItem);
+      feed.scrollTop = feed.scrollHeight;
+      
+      while (feed.children.length > 4) {
+        feed.removeChild(feed.firstChild);
       }
     }
 
-    function startServiceLog(service) {
-      if (logIntervals[service]) clearInterval(logIntervals[service]);
-      
-      let index = 0;
-      // Inicia imediatamente a primeira linha
-      const logs = logsDb[service];
-      appendLog(`[SISTEMA] Iniciando serviço: ${service.toUpperCase()}...`, 'text-cyan-300 font-semibold');
-      appendLog(logs[index % logs.length]);
-      index++;
-
-      logIntervals[service] = setInterval(() => {
-        appendLog(logs[index % logs.length]);
-        index++;
-      }, 3500); // Adiciona logs a cada 3.5 segundos
+    function resetStepsStyle() {
+      for (let i = 1; i <= 3; i++) {
+        const stepIcon = document.getElementById(`step-${i}-icon`);
+        stepIcon.classList.remove('step-active-cyan', 'step-active-emerald', 'step-active-purple');
+      }
     }
 
-    function stopServiceLog(service) {
-      if (logIntervals[service]) {
-        clearInterval(logIntervals[service]);
-        logIntervals[service] = null;
+    function runSequencer() {
+      let step = 1;
+      resetStepsStyle();
+      
+      sequencerTimer = setInterval(() => {
+        resetStepsStyle();
+        if (step <= 3) {
+          const stepIcon = document.getElementById(`step-${step}-icon`);
+          stepIcon.classList.add(`step-active-${agentConfigs[activeAgent].color}`);
+          step++;
+        } else {
+          step = 1;
+        }
+      }, 1200);
+    }
+
+    function restartSimulations() {
+      if (sequencerTimer) clearInterval(sequencerTimer);
+      if (mainSimulationTimer) clearInterval(mainSimulationTimer);
+      
+      runSequencer();
+      
+      const config = agentConfigs[activeAgent];
+      let logIndex = 1;
+      
+      mainSimulationTimer = setInterval(() => {
+        metricVal += Math.floor(Math.random() * 2) + 1;
+        document.getElementById('metric-kpi-val').textContent = metricVal;
+        
+        appendFriendlyLog(config.logs[logIndex % config.logs.length]);
+        logIndex++;
+      }, 4500);
+    }
+
+    function selectAgent(agentId) {
+      if (activeAgent === agentId) return;
+      activeAgent = agentId;
+      
+      const agents = ['whatsapp', 'scraper', 'nurturing'];
+      agents.forEach(id => {
+        const card = document.getElementById(`card-${id}`);
+        const badge = document.getElementById(`badge-${id}`);
+        
+        if (id === agentId) {
+          card.className = `flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 card-active-${id}`;
+          badge.className = `flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-${agentConfigs[id].color}-500/10 border border-${agentConfigs[id].color}-500/20 text-[9px] font-mono font-medium text-${agentConfigs[id].color}-300 select-none`;
+          badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-${agentConfigs[id].color}-400 animate-pulse"></span> ATIVO`;
+        } else {
+          card.className = `flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 opacity-40`;
+          badge.className = `flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.02] border border-white/5 text-[9px] font-mono font-medium text-neutral-500 select-none`;
+          badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-neutral-600"></span> Standby`;
+        }
+      });
+      
+      const config = agentConfigs[agentId];
+      
+      for (let i = 1; i <= 3; i++) {
+        const stepLabel = document.getElementById(`step-${i}-label`);
+        const stepIconContainer = document.getElementById(`step-${i}-icon`);
+        const stepIcon = stepIconContainer.querySelector('iconify-icon');
+        
+        stepLabel.textContent = config.steps[i-1].label;
+        stepIcon.setAttribute('icon', config.steps[i-1].icon);
       }
-      appendLog(`[SISTEMA] Serviço suspenso: ${service.toUpperCase()}`, 'text-orange-400/80 font-medium');
+      
+      const connector1 = document.getElementById('connector-1');
+      const connector2 = document.getElementById('connector-2');
+      connector1.className = `absolute inset-0 w-full h-full -translate-x-full animate-connector-${config.color}`;
+      connector2.className = `absolute inset-0 w-full h-full -translate-x-full animate-connector-${config.color}`;
+      
+      resetStepsStyle();
+      
+      metricVal = config.kpiStart;
+      document.getElementById('metric-kpi-val').textContent = metricVal;
+      document.getElementById('metric-kpi-lbl').textContent = config.kpiLabel;
+      document.getElementById('metric-precision-val').textContent = config.precision;
+      
+      const feed = document.getElementById('timeline-events-feed');
+      feed.innerHTML = '';
+      appendFriendlyLog(`Iniciando monitoramento de fluxo: ${agentId.toUpperCase()}`, `text-${config.color}-400 font-semibold`);
+      appendFriendlyLog(config.logs[0]);
+      
+      restartSimulations();
     }
 
     // Toggle Handlers
-    document.getElementById('toggle-whatsapp').addEventListener('change', (e) => {
-      state.whatsapp = e.target.checked;
-      const desc = document.getElementById('desc-whatsapp');
-      if (state.whatsapp) {
-        desc.innerHTML = 'Status: <span class="text-cyan-400 font-semibold animate-pulse-soft">Ativo & Operando</span>';
-        startServiceLog('whatsapp');
-      } else {
-        desc.innerHTML = 'Status: Standby';
-        stopServiceLog('whatsapp');
-      }
-      updateTerminalPulse();
-    });
-
-    document.getElementById('toggle-scraper').addEventListener('change', (e) => {
-      state.scraper = e.target.checked;
-      const desc = document.getElementById('desc-scraper');
-      if (state.scraper) {
-        desc.innerHTML = 'Status: <span class="text-emerald-400 font-semibold animate-pulse-soft">Ativo & Operando</span>';
-        startServiceLog('scraper');
-      } else {
-        desc.innerHTML = 'Status: Standby';
-        stopServiceLog('scraper');
-      }
-      updateTerminalPulse();
-    });
-
-    document.getElementById('toggle-nurturing').addEventListener('change', (e) => {
-      state.nurturing = e.target.checked;
-      const desc = document.getElementById('desc-nurturing');
-      if (state.nurturing) {
-        desc.innerHTML = 'Status: <span class="text-purple-400 font-semibold animate-pulse-soft">Ativo & Operando</span>';
-        startServiceLog('nurturing');
-      } else {
-        desc.innerHTML = 'Status: Standby';
-        stopServiceLog('nurturing');
-      }
-      updateTerminalPulse();
-    });
+    document.getElementById('card-whatsapp').addEventListener('click', () => selectAgent('whatsapp'));
+    document.getElementById('card-scraper').addEventListener('click', () => selectAgent('scraper'));
+    document.getElementById('card-nurturing').addEventListener('click', () => selectAgent('nurturing'));
 
     // 3D Parallax Tilt Effect for Bento Cards
     const cards = document.querySelectorAll('.border-beam-container, .lg\\:col-span-7');
@@ -649,7 +770,7 @@
         const xc = rect.width / 2;
         const yc = rect.height / 2;
         
-        const angleX = (yc - y) / 25; // Sensibilidade
+        const angleX = (yc - y) / 25;
         const angleY = (x - xc) / 25;
         
         card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.01, 1.01, 1.01)`;
@@ -661,6 +782,9 @@
         card.style.boxShadow = 'none';
       });
     });
+
+    // Start whatsapp simulation by default
+    restartSimulations();
   </script>
 
 </body>
