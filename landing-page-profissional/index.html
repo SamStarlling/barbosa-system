@@ -109,12 +109,13 @@
     /* Border Beam Animation */
     .border-beam-container {
       position: relative;
-      border-radius: 1.5rem; /* 24px */
+      border-radius: 1.5rem;
+      /* 24px */
       overflow: hidden;
       transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
       will-change: transform;
     }
-    
+
     .border-beam-container::before {
       content: '';
       position: absolute;
@@ -122,19 +123,17 @@
       height: 200%;
       top: -50%;
       left: -50%;
-      background: conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        transparent 140deg,
-        rgba(6, 182, 212, 0.5) 180deg,
-        rgba(16, 185, 129, 0.5) 240deg,
-        transparent 280deg
-      );
+      background: conic-gradient(from 0deg,
+          transparent 0deg,
+          transparent 140deg,
+          rgba(6, 182, 212, 0.5) 180deg,
+          rgba(16, 185, 129, 0.5) 240deg,
+          transparent 280deg);
       animation: border-beam-spin 6s linear infinite;
       z-index: 0;
       pointer-events: none;
     }
-    
+
     .border-beam-content {
       position: relative;
       z-index: 10;
@@ -145,7 +144,7 @@
       margin: 1px;
       height: calc(100% - 2px);
     }
-    
+
     @keyframes border-beam-spin {
       100% {
         transform: rotate(360deg);
@@ -156,13 +155,16 @@
     .terminal-scroll::-webkit-scrollbar {
       width: 4px;
     }
+
     .terminal-scroll::-webkit-scrollbar-track {
       background: transparent;
     }
+
     .terminal-scroll::-webkit-scrollbar-thumb {
       background: rgba(255, 255, 255, 0.08);
       border-radius: 2px;
     }
+
     .terminal-scroll::-webkit-scrollbar-thumb:hover {
       background: rgba(6, 182, 212, 0.3);
     }
@@ -174,12 +176,14 @@
       box-shadow: 0 0 20px -5px rgba(6, 182, 212, 0.25);
       opacity: 1 !important;
     }
+
     .card-active-scraper {
       border-color: rgba(16, 185, 129, 0.4) !important;
       background: rgba(16, 185, 129, 0.03) !important;
       box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.25);
       opacity: 1 !important;
     }
+
     .card-active-nurturing {
       border-color: rgba(168, 85, 247, 0.4) !important;
       background: rgba(168, 85, 247, 0.03) !important;
@@ -189,17 +193,25 @@
 
     /* Pipeline connector anim streaks */
     @keyframes connector-streak {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(200%); }
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(200%);
+      }
     }
+
     .animate-connector-cyan {
       animation: connector-streak 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
       background: linear-gradient(to right, transparent, #06b6d4, transparent) !important;
     }
+
     .animate-connector-emerald {
       animation: connector-streak 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
       background: linear-gradient(to right, transparent, #10b981, transparent) !important;
     }
+
     .animate-connector-purple {
       animation: connector-streak 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
       background: linear-gradient(to right, transparent, #a855f7, transparent) !important;
@@ -209,19 +221,24 @@
     .step-active-cyan {
       border-color: rgba(6, 182, 212, 0.5) !important;
       background-color: rgba(6, 182, 212, 0.15) !important;
-      color: #22d3ee !important; /* cyan-400 */
+      color: #22d3ee !important;
+      /* cyan-400 */
       box-shadow: 0 0 15px -3px rgba(6, 182, 212, 0.5);
     }
+
     .step-active-emerald {
       border-color: rgba(16, 185, 129, 0.5) !important;
       background-color: rgba(16, 185, 129, 0.15) !important;
-      color: #34d399 !important; /* emerald-400 */
+      color: #34d399 !important;
+      /* emerald-400 */
       box-shadow: 0 0 15px -3px rgba(16, 185, 129, 0.5);
     }
+
     .step-active-purple {
       border-color: rgba(168, 85, 247, 0.5) !important;
       background-color: rgba(168, 85, 247, 0.15) !important;
-      color: #c084fc !important; /* purple-400 */
+      color: #c084fc !important;
+      /* purple-400 */
       box-shadow: 0 0 15px -3px rgba(168, 85, 247, 0.5);
     }
   </style>
@@ -283,45 +300,57 @@
 
   <!-- Hero Section -->
   <main class="relative z-10 max-w-7xl mx-auto pt-44 pb-20 px-6 min-h-screen flex flex-col justify-center">
-    
+
     <!-- Hero Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
-      
+
       <!-- Left Card (7/12 cols) - Proposta de Valor -->
-      <div class="lg:col-span-7 flex flex-col justify-between p-8 md:p-10 border border-white/5 rounded-3xl bg-neutral-950/40 backdrop-blur-xl relative overflow-hidden animate-fade-in-up" style="animation-delay: 0.1s;">
+      <div
+        class="lg:col-span-7 flex flex-col justify-between p-8 md:p-10 border border-white/5 rounded-3xl bg-neutral-950/40 backdrop-blur-xl relative overflow-hidden animate-fade-in-up"
+        style="animation-delay: 0.1s;">
         <!-- Glowing background overlay -->
-        <div class="absolute -top-12 -left-12 w-64 h-64 bg-cyan-900/10 blur-[100px] rounded-full pointer-events-none"></div>
-        
+        <div class="absolute -top-12 -left-12 w-64 h-64 bg-cyan-900/10 blur-[100px] rounded-full pointer-events-none">
+        </div>
+
         <div>
           <!-- Badge Operational Status -->
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-[10px] uppercase font-mono tracking-widest text-cyan-300 mb-8 select-none">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-[10px] uppercase font-mono tracking-widest text-cyan-300 mb-8 select-none">
             <span class="relative flex h-2 w-2">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
             </span>
-            Estúdio // Operacional
+            A credibilidade que transforma
           </div>
 
           <!-- Headline combining sans & serif -->
-          <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.05] mb-6 select-none">
-            Construímos sites de <br/>
-            <span class="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">alto padrão</span> <br class="hidden md:block"/>
+          <h1
+            class="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.05] mb-6 select-none">
+            Construímos sites de <br />
+            <span
+              class="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">alto
+              padrão</span> <br class="hidden md:block" />
             & automações inteligentes.
           </h1>
 
           <!-- Description -->
           <p class="text-base md:text-lg text-neutral-400 max-w-xl mb-10 leading-relaxed font-sans select-none">
-            Desenvolvemos landing pages de altíssima conversão e integramos agentes de atendimento de IA que trabalham 24/7. Design autoral, credibilidade de mercado e faturamento em escala.
+            Desenvolvemos sites de altíssima conversão e integramos agentes de atendimento de IA que trabalham
+            24/7. Design autoral, credibilidade de mercado e faturamento em escala.
           </p>
         </div>
 
         <!-- CTA and Objections -->
         <div class="flex flex-col sm:flex-row sm:items-center gap-6 mt-auto">
-          <button class="relative group px-8 py-4 bg-white text-black rounded-full font-bold text-sm overflow-hidden transition-all duration-300 hover:scale-102 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]">
-            <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-300 via-blue-300 to-emerald-300 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></div>
+          <button
+            class="relative group px-8 py-4 bg-white text-black rounded-full font-bold text-sm overflow-hidden transition-all duration-300 hover:scale-102 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]">
+            <div
+              class="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-300 via-blue-300 to-emerald-300 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0">
+            </div>
             <span class="relative z-10 flex items-center justify-center gap-2">
               Solicitar Orçamento Gratuito
-              <iconify-icon icon="solar:arrow-right-linear" width="16" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+              <iconify-icon icon="solar:arrow-right-linear" width="16"
+                class="group-hover:translate-x-1 transition-transform"></iconify-icon>
             </span>
           </button>
           <div class="flex items-center gap-2 text-xs text-neutral-500 font-medium">
@@ -334,7 +363,7 @@
       <!-- Right Card (5/12 cols) - Interactive Dashboard -->
       <div class="lg:col-span-5 border-beam-container animate-fade-in-up" style="animation-delay: 0.3s;">
         <div class="border-beam-content p-6 flex flex-col justify-between h-full">
-          
+
           <!-- Mockup Window Header -->
           <div class="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
             <div class="flex items-center gap-2">
@@ -345,7 +374,8 @@
               </div>
               <span class="text-[10px] text-neutral-500 font-mono ml-2">lumina_bot_panel.sh</span>
             </div>
-            <div class="flex items-center gap-1.5 text-[9px] font-mono bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded-md text-emerald-400">
+            <div
+              class="flex items-center gap-1.5 text-[9px] font-mono bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded-md text-emerald-400">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
               LIVE_SYSTEM
             </div>
@@ -353,53 +383,71 @@
 
           <!-- Interactive Cards (Automações V2) -->
           <div class="space-y-3.5 mb-6" id="agent-cards-container">
-            
+
             <!-- WhatsApp Bot Card -->
-            <div id="card-whatsapp" class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 card-active-whatsapp">
+            <div id="card-whatsapp"
+              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 card-active-whatsapp">
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform" id="icon-container-whatsapp">
+                <div
+                  class="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform"
+                  id="icon-container-whatsapp">
                   <iconify-icon icon="solar:chat-round-dots-bold" width="20"></iconify-icon>
                 </div>
                 <div>
                   <h4 class="text-xs text-white font-semibold">Agente de Vendas WhatsApp</h4>
-                  <p class="text-[9px] text-neutral-500 mt-0.5 font-medium" id="desc-whatsapp">Funil de Atendimento Automatizado</p>
+                  <p class="text-[9px] text-neutral-500 mt-0.5 font-medium" id="desc-whatsapp">Funil de Atendimento
+                    Automatizado</p>
                 </div>
               </div>
-              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[9px] font-mono font-medium text-cyan-300 select-none" id="badge-whatsapp">
+              <div
+                class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[9px] font-mono font-medium text-cyan-300 select-none"
+                id="badge-whatsapp">
                 <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
                 ATIVO
               </div>
             </div>
 
             <!-- Lead Scraper Card -->
-            <div id="card-scraper" class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 opacity-40">
+            <div id="card-scraper"
+              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 opacity-40">
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform" id="icon-container-scraper">
+                <div
+                  class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform"
+                  id="icon-container-scraper">
                   <iconify-icon icon="solar:globus-bold" width="20"></iconify-icon>
                 </div>
                 <div>
                   <h4 class="text-xs text-white font-semibold">Capturador Google Maps</h4>
-                  <p class="text-[9px] text-neutral-500 mt-0.5 font-medium" id="desc-scraper">Mapeamento de Leads Locais</p>
+                  <p class="text-[9px] text-neutral-500 mt-0.5 font-medium" id="desc-scraper">Mapeamento de Leads Locais
+                  </p>
                 </div>
               </div>
-              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.02] border border-white/5 text-[9px] font-mono font-medium text-neutral-500 select-none" id="badge-scraper">
+              <div
+                class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.02] border border-white/5 text-[9px] font-mono font-medium text-neutral-500 select-none"
+                id="badge-scraper">
                 <span class="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
                 Standby
               </div>
             </div>
 
             <!-- Funil IA Card -->
-            <div id="card-nurturing" class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 opacity-40">
+            <div id="card-nurturing"
+              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 opacity-40">
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:scale-105 transition-transform" id="icon-container-nurturing">
+                <div
+                  class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:scale-105 transition-transform"
+                  id="icon-container-nurturing">
                   <iconify-icon icon="solar:diagram-up-bold" width="20"></iconify-icon>
                 </div>
                 <div>
                   <h4 class="text-xs text-white font-semibold">Funil & Qualificação IA</h4>
-                  <p class="text-[9px] text-neutral-500 mt-0.5 font-medium" id="desc-nurturing">Engajamento & Disparo Inteligente</p>
+                  <p class="text-[9px] text-neutral-500 mt-0.5 font-medium" id="desc-nurturing">Engajamento & Disparo
+                    Inteligente</p>
                 </div>
               </div>
-              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.02] border border-white/5 text-[9px] font-mono font-medium text-neutral-500 select-none" id="badge-nurturing">
+              <div
+                class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.02] border border-white/5 text-[9px] font-mono font-medium text-neutral-500 select-none"
+                id="badge-nurturing">
                 <span class="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
                 Standby
               </div>
@@ -408,48 +456,61 @@
 
           <!-- Visualizer & Metrics Panel V2 -->
           <div class="flex flex-col gap-4">
-            
+
             <!-- Visual Flow Diagram -->
-            <div class="bg-black/30 border border-white/5 rounded-2xl p-4 select-none relative overflow-hidden flex items-center justify-between">
+            <div
+              class="bg-black/30 border border-white/5 rounded-2xl p-4 select-none relative overflow-hidden flex items-center justify-between">
               <!-- Step 1 -->
               <div class="flex flex-col items-center gap-1 z-10 w-20 text-center" id="step-1">
-                <div class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 step-active-cyan transition-all duration-300" id="step-1-icon">
+                <div
+                  class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 step-active-cyan transition-all duration-300"
+                  id="step-1-icon">
                   <iconify-icon icon="solar:login-2-linear" width="16"></iconify-icon>
                 </div>
-                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1" id="step-1-label">Novo Lead</span>
+                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1"
+                  id="step-1-label">Novo Lead</span>
               </div>
 
               <!-- Connector 1 -->
               <div class="flex-1 h-[1px] bg-white/10 mx-2 relative overflow-hidden rounded-full">
-                <div class="absolute inset-0 w-full h-full -translate-x-full animate-connector-cyan" id="connector-1"></div>
+                <div class="absolute inset-0 w-full h-full -translate-x-full animate-connector-cyan" id="connector-1">
+                </div>
               </div>
 
               <!-- Step 2 -->
               <div class="flex flex-col items-center gap-1 z-10 w-20 text-center" id="step-2">
-                <div class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300" id="step-2-icon">
+                <div
+                  class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300"
+                  id="step-2-icon">
                   <iconify-icon icon="solar:cpu-linear" width="16"></iconify-icon>
                 </div>
-                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1" id="step-2-label">Qualificar</span>
+                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1"
+                  id="step-2-label">Qualificar</span>
               </div>
 
               <!-- Connector 2 -->
               <div class="flex-1 h-[1px] bg-white/10 mx-2 relative overflow-hidden rounded-full">
-                <div class="absolute inset-0 w-full h-full -translate-x-full animate-connector-cyan" id="connector-2"></div>
+                <div class="absolute inset-0 w-full h-full -translate-x-full animate-connector-cyan" id="connector-2">
+                </div>
               </div>
 
               <!-- Step 3 -->
               <div class="flex flex-col items-center gap-1 z-10 w-20 text-center" id="step-3">
-                <div class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300" id="step-3-icon">
+                <div
+                  class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300"
+                  id="step-3-icon">
                   <iconify-icon icon="solar:chat-round-dots-linear" width="16"></iconify-icon>
                 </div>
-                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1" id="step-3-label">Mensagem</span>
+                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1"
+                  id="step-3-label">Mensagem</span>
               </div>
             </div>
 
             <!-- Two-Column KPI Metrics -->
             <div class="grid grid-cols-2 gap-4">
               <div class="bg-black/30 border border-white/5 rounded-2xl p-4 flex flex-col justify-between">
-                <span class="text-[9px] font-mono uppercase tracking-widest text-neutral-500 select-none">Métricas Totais</span>
+                <span class="text-[9px] font-mono uppercase tracking-widest text-neutral-500 select-none">Métricas
+                  Totais</span>
                 <div class="flex items-baseline gap-2 mt-2">
                   <span class="text-2xl font-bold text-white font-mono tracking-tight" id="metric-kpi-val">47</span>
                   <span class="text-[9px] text-emerald-400 font-mono flex items-center gap-0.5">
@@ -460,9 +521,11 @@
               </div>
 
               <div class="bg-black/30 border border-white/5 rounded-2xl p-4 flex flex-col justify-between">
-                <span class="text-[9px] font-mono uppercase tracking-widest text-neutral-500 select-none">Precisão da IA</span>
+                <span class="text-[9px] font-mono uppercase tracking-widest text-neutral-500 select-none">Precisão da
+                  IA</span>
                 <div class="flex items-baseline gap-2 mt-2">
-                  <span class="text-2xl font-bold text-white font-mono tracking-tight" id="metric-precision-val">98.4%</span>
+                  <span class="text-2xl font-bold text-white font-mono tracking-tight"
+                    id="metric-precision-val">98.4%</span>
                   <span class="text-[9px] text-cyan-400 font-mono">GPT-4o</span>
                 </div>
                 <span class="text-[8px] text-neutral-500 mt-1 select-none">Sem erros de fluxo</span>
@@ -470,8 +533,11 @@
             </div>
 
             <!-- Friendly Events Timeline Feed -->
-            <div class="bg-black/30 border border-white/5 rounded-2xl p-4 flex flex-col gap-3 min-h-[140px] max-h-[140px] overflow-hidden select-none">
-              <span class="text-[9px] font-mono uppercase tracking-widest text-neutral-500 border-b border-white/5 pb-2">Timeline de Atividades</span>
+            <div
+              class="bg-black/30 border border-white/5 rounded-2xl p-4 flex flex-col gap-3 min-h-[140px] max-h-[140px] overflow-hidden select-none">
+              <span
+                class="text-[9px] font-mono uppercase tracking-widest text-neutral-500 border-b border-white/5 pb-2">Timeline
+                de Atividades</span>
               <div class="flex flex-col gap-2.5 overflow-y-auto terminal-scroll pr-1" id="timeline-events-feed">
                 <!-- Initial Event 1 -->
                 <div class="flex items-start gap-2.5 text-[10px] text-neutral-400 animate-fade-in-up">
@@ -482,7 +548,8 @@
                   </div>
                 </div>
                 <!-- Initial Event 2 -->
-                <div class="flex items-start gap-2.5 text-[10px] text-neutral-400 animate-fade-in-up" style="animation-delay: 0.1s;">
+                <div class="flex items-start gap-2.5 text-[10px] text-neutral-400 animate-fade-in-up"
+                  style="animation-delay: 0.1s;">
                   <iconify-icon icon="solar:check-circle-bold" class="text-cyan-400 mt-0.5" width="12"></iconify-icon>
                   <div class="flex-1 leading-normal text-neutral-300">
                     <span class="text-neutral-600 font-mono mr-1.5" id="log-time-2">20:01:25</span>
@@ -493,45 +560,56 @@
             </div>
 
           </div>
-          
+
         </div>
       </div>
 
     </div>
 
     <!-- Mini-dores (Pain points) Marquee - Repurposed -->
-    <div class="w-full overflow-hidden relative py-4 border-y border-white/5 animate-fade-in-up" style="animation-delay: 0.5s;">
-      
+    <div class="w-full overflow-hidden relative py-4 border-y border-white/5 animate-fade-in-up"
+      style="animation-delay: 0.5s;">
+
       <!-- Gradient Fade Masks -->
-      <div class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#030305] to-transparent z-10 pointer-events-none"></div>
-      <div class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#030305] to-transparent z-10 pointer-events-none"></div>
+      <div
+        class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#030305] to-transparent z-10 pointer-events-none">
+      </div>
+      <div
+        class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#030305] to-transparent z-10 pointer-events-none">
+      </div>
 
       <!-- Marquee Track container -->
       <div class="flex w-max animate-marquee hover:[animation-play-state:paused] group/track">
-        
+
         <!-- FIRST SET OF CARDS -->
         <div class="flex gap-12 pr-12 items-center">
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-cyan-400"></iconify-icon>
             Médicos & Clínicas
           </span>
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-emerald-400"></iconify-icon>
             Corretores & Imobiliárias
           </span>
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-purple-400"></iconify-icon>
             Escritórios de Advocacia
           </span>
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-cyan-400"></iconify-icon>
             E-commerces & Lojas
           </span>
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-emerald-400"></iconify-icon>
             Startups & SaaS
           </span>
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-purple-400"></iconify-icon>
             Infoprodutores & Especialistas
           </span>
@@ -539,27 +617,33 @@
 
         <!-- SECOND SET OF CARDS (Duplicate for seamless loop) -->
         <div class="flex gap-12 pr-12 items-center">
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-cyan-400"></iconify-icon>
             Médicos & Clínicas
           </span>
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-emerald-400"></iconify-icon>
             Corretores & Imobiliárias
           </span>
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-purple-400"></iconify-icon>
             Escritórios de Advocacia
           </span>
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-cyan-400"></iconify-icon>
             E-commerces & Lojas
           </span>
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-emerald-400"></iconify-icon>
             Startups & SaaS
           </span>
-          <span class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
+          <span
+            class="text-xs font-mono font-medium tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2">
             <iconify-icon icon="solar:star-bold" class="text-purple-400"></iconify-icon>
             Infoprodutores & Especialistas
           </span>
@@ -639,13 +723,13 @@
     function appendFriendlyLog(text, colorClass = 'text-neutral-300') {
       const feed = document.getElementById('timeline-events-feed');
       const time = new Date().toLocaleTimeString('pt-BR', { hour12: false });
-      
+
       const logItem = document.createElement('div');
       logItem.className = 'flex items-start gap-2.5 text-[10px] text-neutral-400 animate-fade-in-up';
-      
+
       const config = agentConfigs[activeAgent];
       const iconColor = colorClass.includes('font-semibold') ? colorClass : `text-${config.color}-400`;
-      
+
       logItem.innerHTML = `
         <iconify-icon icon="solar:check-circle-bold" class="${iconColor} mt-0.5" width="12"></iconify-icon>
         <div class="flex-1 leading-normal ${colorClass}">
@@ -653,10 +737,10 @@
           <span>${text}</span>
         </div>
       `;
-      
+
       feed.appendChild(logItem);
       feed.scrollTop = feed.scrollHeight;
-      
+
       while (feed.children.length > 4) {
         feed.removeChild(feed.firstChild);
       }
@@ -672,7 +756,7 @@
     function runSequencer() {
       let step = 1;
       resetStepsStyle();
-      
+
       sequencerTimer = setInterval(() => {
         resetStepsStyle();
         if (step <= 3) {
@@ -688,16 +772,16 @@
     function restartSimulations() {
       if (sequencerTimer) clearInterval(sequencerTimer);
       if (mainSimulationTimer) clearInterval(mainSimulationTimer);
-      
+
       runSequencer();
-      
+
       const config = agentConfigs[activeAgent];
       let logIndex = 1;
-      
+
       mainSimulationTimer = setInterval(() => {
         metricVal += Math.floor(Math.random() * 2) + 1;
         document.getElementById('metric-kpi-val').textContent = metricVal;
-        
+
         appendFriendlyLog(config.logs[logIndex % config.logs.length]);
         logIndex++;
       }, 4500);
@@ -706,12 +790,12 @@
     function selectAgent(agentId) {
       if (activeAgent === agentId) return;
       activeAgent = agentId;
-      
+
       const agents = ['whatsapp', 'scraper', 'nurturing'];
       agents.forEach(id => {
         const card = document.getElementById(`card-${id}`);
         const badge = document.getElementById(`badge-${id}`);
-        
+
         if (id === agentId) {
           card.className = `flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 card-active-${id}`;
           badge.className = `flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-${agentConfigs[id].color}-500/10 border border-${agentConfigs[id].color}-500/20 text-[9px] font-mono font-medium text-${agentConfigs[id].color}-300 select-none`;
@@ -722,35 +806,35 @@
           badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-neutral-600"></span> Standby`;
         }
       });
-      
+
       const config = agentConfigs[agentId];
-      
+
       for (let i = 1; i <= 3; i++) {
         const stepLabel = document.getElementById(`step-${i}-label`);
         const stepIconContainer = document.getElementById(`step-${i}-icon`);
         const stepIcon = stepIconContainer.querySelector('iconify-icon');
-        
-        stepLabel.textContent = config.steps[i-1].label;
-        stepIcon.setAttribute('icon', config.steps[i-1].icon);
+
+        stepLabel.textContent = config.steps[i - 1].label;
+        stepIcon.setAttribute('icon', config.steps[i - 1].icon);
       }
-      
+
       const connector1 = document.getElementById('connector-1');
       const connector2 = document.getElementById('connector-2');
       connector1.className = `absolute inset-0 w-full h-full -translate-x-full animate-connector-${config.color}`;
       connector2.className = `absolute inset-0 w-full h-full -translate-x-full animate-connector-${config.color}`;
-      
+
       resetStepsStyle();
-      
+
       metricVal = config.kpiStart;
       document.getElementById('metric-kpi-val').textContent = metricVal;
       document.getElementById('metric-kpi-lbl').textContent = config.kpiLabel;
       document.getElementById('metric-precision-val').textContent = config.precision;
-      
+
       const feed = document.getElementById('timeline-events-feed');
       feed.innerHTML = '';
       appendFriendlyLog(`Iniciando monitoramento de fluxo: ${agentId.toUpperCase()}`, `text-${config.color}-400 font-semibold`);
       appendFriendlyLog(config.logs[0]);
-      
+
       restartSimulations();
     }
 
@@ -766,17 +850,17 @@
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const xc = rect.width / 2;
         const yc = rect.height / 2;
-        
+
         const angleX = (yc - y) / 25;
         const angleY = (x - xc) / 25;
-        
+
         card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.01, 1.01, 1.01)`;
         card.style.boxShadow = `0 15px 35px -10px rgba(6, 182, 212, 0.15)`;
       });
-      
+
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
         card.style.boxShadow = 'none';
