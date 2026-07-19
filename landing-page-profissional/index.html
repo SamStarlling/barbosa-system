@@ -241,6 +241,67 @@
       /* purple-400 */
       box-shadow: 0 0 15px -3px rgba(168, 85, 247, 0.5);
     }
+
+    /* Sweep animation for CTA */
+    @keyframes sweep {
+      0% {
+        left: -100%;
+      }
+
+      50%,
+      100% {
+        left: 150%;
+      }
+    }
+
+    .btn-sweep {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-sweep::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.4) 50%,
+          rgba(255, 255, 255, 0) 100%);
+      transform: skewX(-25deg);
+      animation: sweep 6s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .btn-sweep:hover::after {
+      animation: sweep 1.5s infinite ease-in-out;
+    }
+
+    /* Terminal Cursor */
+    @keyframes cursorBlink {
+
+      0%,
+      100% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 5px;
+      height: 10px;
+      background-color: currentColor;
+      margin-left: 2px;
+      animation: cursorBlink 0.8s infinite;
+      vertical-align: middle;
+    }
   </style>
 </head>
 
@@ -320,30 +381,30 @@
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
             </span>
-            A credibilidade que transforma
+            DESIGN PREMIUM & AGENTES IA
           </div>
 
           <!-- Headline combining sans & serif -->
           <h1
             class="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.05] mb-6 select-none">
-            Construímos sites de <br />
+            Sites autorais de <br />
             <span
-              class="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">alto
-              padrão</span> <br class="hidden md:block" />
-            & automações inteligentes.
+              class="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">altíssima
+              conversão</span> <br class="hidden md:block" />
+            & IA integrada ao seu comercial.
           </h1>
 
           <!-- Description -->
           <p class="text-base md:text-lg text-neutral-400 max-w-xl mb-10 leading-relaxed font-sans select-none">
-            Desenvolvemos sites de altíssima conversão e integramos agentes de atendimento de IA que trabalham
-            24/7. Design autoral, credibilidade de mercado e faturamento em escala.
+            Unimos design de alta fidelidade e agentes autônomos de Inteligência Artificial para qualificar, engajar e
+            converter visitantes em clientes reais — 24 horas por dia.
           </p>
         </div>
 
         <!-- CTA and Objections -->
         <div class="flex flex-col sm:flex-row sm:items-center gap-6 mt-auto">
           <button
-            class="relative group px-8 py-4 bg-white text-black rounded-full font-bold text-sm overflow-hidden transition-all duration-300 hover:scale-102 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]">
+            class="btn-sweep relative group px-8 py-4 bg-white text-black rounded-full font-bold text-sm overflow-hidden transition-all duration-300 hover:scale-102 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]">
             <div
               class="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-300 via-blue-300 to-emerald-300 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0">
             </div>
@@ -386,7 +447,7 @@
 
             <!-- WhatsApp Bot Card -->
             <div id="card-whatsapp"
-              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 card-active-whatsapp">
+              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group card-active-whatsapp">
               <div class="flex items-center gap-3">
                 <div
                   class="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform"
@@ -409,7 +470,7 @@
 
             <!-- Lead Scraper Card -->
             <div id="card-scraper"
-              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 opacity-40">
+              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group opacity-40">
               <div class="flex items-center gap-3">
                 <div
                   class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform"
@@ -432,7 +493,7 @@
 
             <!-- Funil IA Card -->
             <div id="card-nurturing"
-              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 opacity-40">
+              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group opacity-40">
               <div class="flex items-center gap-3">
                 <div
                   class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:scale-105 transition-transform"
@@ -719,6 +780,12 @@
     let sequencerTimer = null;
     let mainSimulationTimer = null;
     let metricVal = agentConfigs.whatsapp.kpiStart;
+    let currentTypingIntervals = [];
+
+    function clearTypingIntervals() {
+      currentTypingIntervals.forEach(interval => clearInterval(interval));
+      currentTypingIntervals = [];
+    }
 
     function appendFriendlyLog(text, colorClass = 'text-neutral-300') {
       const feed = document.getElementById('timeline-events-feed');
@@ -734,7 +801,7 @@
         <iconify-icon icon="solar:check-circle-bold" class="${iconColor} mt-0.5" width="12"></iconify-icon>
         <div class="flex-1 leading-normal ${colorClass}">
           <span class="text-neutral-600 font-mono mr-1.5 select-none">${time}</span>
-          <span>${text}</span>
+          <span class="log-text"></span><span class="terminal-cursor"></span>
         </div>
       `;
 
@@ -744,6 +811,26 @@
       while (feed.children.length > 4) {
         feed.removeChild(feed.firstChild);
       }
+
+      // Efeito de digitação da mensagem
+      const logTextSpan = logItem.querySelector('.log-text');
+      const cursorSpan = logItem.querySelector('.terminal-cursor');
+      let charIndex = 0;
+
+      const typingInterval = setInterval(() => {
+        if (charIndex < text.length) {
+          logTextSpan.textContent += text.charAt(charIndex);
+          charIndex++;
+          feed.scrollTop = feed.scrollHeight;
+        } else {
+          clearInterval(typingInterval);
+          cursorSpan.remove(); // Remove o cursor piscante quando a digitação termina
+          const idx = currentTypingIntervals.indexOf(typingInterval);
+          if (idx > -1) currentTypingIntervals.splice(idx, 1);
+        }
+      }, 15); // Velocidade de digitação rápida e dinâmica
+
+      currentTypingIntervals.push(typingInterval);
     }
 
     function resetStepsStyle() {
@@ -772,6 +859,7 @@
     function restartSimulations() {
       if (sequencerTimer) clearInterval(sequencerTimer);
       if (mainSimulationTimer) clearInterval(mainSimulationTimer);
+      clearTypingIntervals();
 
       runSequencer();
 
@@ -797,11 +885,11 @@
         const badge = document.getElementById(`badge-${id}`);
 
         if (id === agentId) {
-          card.className = `flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 card-active-${id}`;
+          card.className = `flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group card-active-${id}`;
           badge.className = `flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-${agentConfigs[id].color}-500/10 border border-${agentConfigs[id].color}-500/20 text-[9px] font-mono font-medium text-${agentConfigs[id].color}-300 select-none`;
           badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-${agentConfigs[id].color}-400 animate-pulse"></span> ATIVO`;
         } else {
-          card.className = `flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all cursor-pointer group duration-300 opacity-40`;
+          card.className = `flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group opacity-40`;
           badge.className = `flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.02] border border-white/5 text-[9px] font-mono font-medium text-neutral-500 select-none`;
           badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-neutral-600"></span> Standby`;
         }
