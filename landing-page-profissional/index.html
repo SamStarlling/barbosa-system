@@ -203,44 +203,62 @@
     }
 
     .animate-connector-cyan {
-      animation: connector-streak 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-      background: linear-gradient(to right, transparent, #06b6d4, transparent) !important;
+      animation: connector-streak 2.0s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      background: linear-gradient(to right, transparent, #22d3ee, #06b6d4, #22d3ee, transparent) !important;
     }
 
     .animate-connector-emerald {
-      animation: connector-streak 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-      background: linear-gradient(to right, transparent, #10b981, transparent) !important;
+      animation: connector-streak 2.0s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      background: linear-gradient(to right, transparent, #34d399, #10b981, #34d399, transparent) !important;
     }
 
     .animate-connector-purple {
-      animation: connector-streak 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-      background: linear-gradient(to right, transparent, #a855f7, transparent) !important;
+      animation: connector-streak 2.0s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      background: linear-gradient(to right, transparent, #c084fc, #a855f7, #c084fc, transparent) !important;
     }
 
-    /* Step states */
+    /* Step states and Active Highlights */
     .step-active-cyan {
-      border-color: rgba(6, 182, 212, 0.5) !important;
-      background-color: rgba(6, 182, 212, 0.15) !important;
+      transform: scale(1.15) !important;
+      border-color: rgba(6, 182, 212, 0.8) !important;
+      background-color: rgba(6, 182, 212, 0.2) !important;
       color: #22d3ee !important;
-      /* cyan-400 */
-      box-shadow: 0 0 15px -3px rgba(6, 182, 212, 0.5);
+      box-shadow: 0 0 20px 2px rgba(6, 182, 212, 0.5), inset 0 0 8px rgba(6, 182, 212, 0.3) !important;
     }
 
     .step-active-emerald {
-      border-color: rgba(16, 185, 129, 0.5) !important;
-      background-color: rgba(16, 185, 129, 0.15) !important;
+      transform: scale(1.15) !important;
+      border-color: rgba(16, 185, 129, 0.8) !important;
+      background-color: rgba(16, 185, 129, 0.2) !important;
       color: #34d399 !important;
-      /* emerald-400 */
-      box-shadow: 0 0 15px -3px rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 20px 2px rgba(16, 185, 129, 0.5), inset 0 0 8px rgba(16, 185, 129, 0.3) !important;
     }
 
     .step-active-purple {
-      border-color: rgba(168, 85, 247, 0.5) !important;
-      background-color: rgba(168, 85, 247, 0.15) !important;
+      transform: scale(1.15) !important;
+      border-color: rgba(168, 85, 247, 0.8) !important;
+      background-color: rgba(168, 85, 247, 0.2) !important;
       color: #c084fc !important;
-      /* purple-400 */
-      box-shadow: 0 0 15px -3px rgba(168, 85, 247, 0.5);
+      box-shadow: 0 0 20px 2px rgba(168, 85, 247, 0.5), inset 0 0 8px rgba(168, 85, 247, 0.3) !important;
     }
+
+    /* Hover Focus Easing on Main Bento Panel */
+    .border-beam-container:hover .opacity-40 {
+      opacity: 0.20 !important;
+    }
+
+    .border-beam-container:hover .card-active-whatsapp {
+      box-shadow: 0 0 30px -3px rgba(6, 182, 212, 0.35), inset 0 0 15px rgba(6, 182, 212, 0.1);
+    }
+
+    .border-beam-container:hover .card-active-scraper {
+      box-shadow: 0 0 30px -3px rgba(16, 185, 129, 0.35), inset 0 0 15px rgba(16, 185, 129, 0.1);
+    }
+
+    .border-beam-container:hover .card-active-nurturing {
+      box-shadow: 0 0 30px -3px rgba(168, 85, 247, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.1);
+    }
+
 
     /* Sweep animation for CTA */
     @keyframes sweep {
@@ -374,14 +392,12 @@
         </div>
 
         <div>
-          <!-- Badge Operational Status -->
+          <!-- Badge -->
           <div
-            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-[10px] uppercase font-mono tracking-widest text-cyan-300 mb-8 select-none">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-            </span>
-            DESIGN PREMIUM & AGENTES IA
+            class="inline-flex items-center px-4 py-[0.35rem] md:px-5 md:py-2 rounded-full bg-[#20E6B9]/10 text-[0.8rem] md:text-[0.875rem] font-semibold tracking-[0.06em] text-[#20E6B9] mb-5 md:mb-6 select-none border border-[#20E6B9]/20">
+            <span
+              class="inline-block min-w-[8px] min-h-[8px] w-[8px] h-[8px] rounded-full bg-[#20E6B9] mr-[6px]"></span>
+            Sites que geram confiança
           </div>
 
           <!-- Headline combining sans & serif -->
@@ -524,16 +540,17 @@
               <!-- Step 1 -->
               <div class="flex flex-col items-center gap-1 z-10 w-20 text-center" id="step-1">
                 <div
-                  class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 step-active-cyan transition-all duration-300"
+                  class="w-11 h-11 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 step-active-cyan transition-all duration-300 ease-in-out"
                   id="step-1-icon">
-                  <iconify-icon icon="solar:login-2-linear" width="16"></iconify-icon>
+                  <iconify-icon icon="solar:login-2-linear" width="18"></iconify-icon>
                 </div>
-                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1"
+                <span
+                  class="text-[9px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1 transition-colors duration-300"
                   id="step-1-label">Novo Lead</span>
               </div>
 
               <!-- Connector 1 -->
-              <div class="flex-1 h-[1px] bg-white/10 mx-2 relative overflow-hidden rounded-full">
+              <div class="flex-1 h-[2px] bg-white/10 mx-2 relative overflow-hidden rounded-full">
                 <div class="absolute inset-0 w-full h-full -translate-x-full animate-connector-cyan" id="connector-1">
                 </div>
               </div>
@@ -541,16 +558,17 @@
               <!-- Step 2 -->
               <div class="flex flex-col items-center gap-1 z-10 w-20 text-center" id="step-2">
                 <div
-                  class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300"
+                  class="w-11 h-11 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300 ease-in-out"
                   id="step-2-icon">
-                  <iconify-icon icon="solar:cpu-linear" width="16"></iconify-icon>
+                  <iconify-icon icon="solar:cpu-linear" width="18"></iconify-icon>
                 </div>
-                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1"
+                <span
+                  class="text-[9px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1 transition-colors duration-300"
                   id="step-2-label">Qualificar</span>
               </div>
 
               <!-- Connector 2 -->
-              <div class="flex-1 h-[1px] bg-white/10 mx-2 relative overflow-hidden rounded-full">
+              <div class="flex-1 h-[2px] bg-white/10 mx-2 relative overflow-hidden rounded-full">
                 <div class="absolute inset-0 w-full h-full -translate-x-full animate-connector-cyan" id="connector-2">
                 </div>
               </div>
@@ -558,11 +576,12 @@
               <!-- Step 3 -->
               <div class="flex flex-col items-center gap-1 z-10 w-20 text-center" id="step-3">
                 <div
-                  class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300"
+                  class="w-11 h-11 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300 ease-in-out"
                   id="step-3-icon">
-                  <iconify-icon icon="solar:chat-round-dots-linear" width="16"></iconify-icon>
+                  <iconify-icon icon="solar:chat-round-dots-linear" width="18"></iconify-icon>
                 </div>
-                <span class="text-[8px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1"
+                <span
+                  class="text-[9px] font-mono font-semibold tracking-wider text-neutral-500 uppercase mt-1 transition-colors duration-300"
                   id="step-3-label">Mensagem</span>
               </div>
             </div>
@@ -836,7 +855,10 @@
     function resetStepsStyle() {
       for (let i = 1; i <= 3; i++) {
         const stepIcon = document.getElementById(`step-${i}-icon`);
+        const stepLabel = document.getElementById(`step-${i}-label`);
         stepIcon.classList.remove('step-active-cyan', 'step-active-emerald', 'step-active-purple');
+        stepLabel.classList.remove('text-cyan-400', 'text-emerald-400', 'text-purple-400', 'font-bold', 'text-white');
+        stepLabel.classList.add('text-neutral-500');
       }
     }
 
@@ -848,7 +870,12 @@
         resetStepsStyle();
         if (step <= 3) {
           const stepIcon = document.getElementById(`step-${step}-icon`);
-          stepIcon.classList.add(`step-active-${agentConfigs[activeAgent].color}`);
+          const stepLabel = document.getElementById(`step-${step}-label`);
+          const config = agentConfigs[activeAgent];
+
+          stepIcon.classList.add(`step-active-${config.color}`);
+          stepLabel.classList.remove('text-neutral-500');
+          stepLabel.classList.add(`text-${config.color}-400`, 'font-bold');
           step++;
         } else {
           step = 1;
