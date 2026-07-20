@@ -330,16 +330,30 @@
       animation: scan-horizontal 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
 
-    /* Hero container responsive height bounds */
-    .hero-main {
-      min-height: 100vh;
+    /* CSS Scroll Snap (Desktop Only) */
+    html {
+      scroll-behavior: smooth;
     }
     @media (min-width: 1024px) {
-      .hero-main {
-        height: 100vh;
-        min-height: 650px;
-        max-height: 780px;
+      html {
+        scroll-snap-type: y mandatory;
       }
+      .snap-section {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        height: 100vh;
+        min-height: 100vh;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+    }
+
+    /* Hero container base style */
+    .hero-main {
+      min-height: 100vh;
     }
 
     /* Header transition on scroll */
@@ -409,7 +423,7 @@
       <!-- Menu -->
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-400">
         <a href="#" class="hover:text-white transition-colors">Portfólio</a>
-        <a href="#" class="hover:text-white transition-colors">Serviços</a>
+        <a href="#servicos" class="hover:text-white transition-colors">Serviços</a>
         <a href="#" class="hover:text-white transition-colors">Metodologia</a>
         <a href="#" class="hover:text-white transition-colors">Resultados</a>
       </div>
@@ -428,7 +442,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <main class="relative z-10 max-w-7xl mx-auto pt-20 lg:pt-24 pb-4 lg:pb-6 px-6 flex flex-col justify-center hero-main">
+  <main class="relative z-10 max-w-7xl mx-auto pt-20 lg:pt-24 pb-4 lg:pb-6 px-6 flex flex-col justify-center hero-main snap-section">
 
     <!-- Hero Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch mb-6">
@@ -788,7 +802,7 @@
   </main>
 
   <!-- Services Section -->
-  <section id="servicos" class="relative z-10 max-w-7xl mx-auto pt-8 md:pt-10 pb-20 px-6 border-t border-white/5">
+  <section id="servicos" class="relative z-10 max-w-7xl mx-auto pt-8 md:pt-10 pb-20 px-6 border-t border-white/5 snap-section">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
       
       <!-- Left Column - Title, Subtitle, Micro-benefits and CTA -->
