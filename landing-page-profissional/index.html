@@ -329,6 +329,35 @@
     .animate-scan-line {
       animation: scan-horizontal 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
+
+    /* Header transition on scroll */
+    nav {
+      transition: top 0.3s ease, padding 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    }
+    nav.nav-scrolled {
+      top: 0 !important;
+      padding-top: 0.75rem !important;
+      padding-bottom: 0.75rem !important;
+      background-color: rgba(3, 3, 5, 0.95) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+    }
+    nav.nav-scrolled .glass-panel {
+      background: transparent !important;
+      border: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      box-shadow: none !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    /* Smooth fade for main content */
+    main {
+      transition: opacity 0.2s ease-out;
+      will-change: opacity;
+    }
   </style>
 </head>
 
@@ -352,7 +381,7 @@
   </div>
 
   <!-- Navigation (Savory Plate Glass style) -->
-  <nav class="fixed top-6 left-0 right-0 z-50 px-4 flex justify-center animate-fade-in-up">
+  <nav id="main-nav" class="fixed top-6 left-0 right-0 z-50 px-4 flex justify-center animate-fade-in-up">
     <div
       class="glass-panel w-full max-w-6xl rounded-full px-6 py-3 flex items-center justify-between shadow-2xl shadow-black/50">
 
@@ -747,7 +776,7 @@
   </main>
 
   <!-- Services Section -->
-  <section id="servicos" class="relative z-10 max-w-7xl mx-auto py-20 px-6 border-t border-white/5">
+  <section id="servicos" class="relative z-10 max-w-7xl mx-auto pt-8 md:pt-10 pb-20 px-6 border-t border-white/5">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
       
       <!-- Left Column - Title, Subtitle, Micro-benefits and CTA -->
@@ -1116,6 +1145,29 @@
         card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
         card.style.boxShadow = 'none';
       });
+    });
+
+    // Smooth scroll navigation and fade out effects
+    const mainNav = document.getElementById('main-nav');
+    const heroSection = document.querySelector('main');
+
+    window.addEventListener('scroll', () => {
+      // Header sticky dynamic class toggle
+      if (window.scrollY > 40) {
+        mainNav.classList.add('nav-scrolled');
+      } else {
+        mainNav.classList.remove('nav-scrolled');
+      }
+      
+      // Smooth fade of hero section based on scroll offset
+      if (window.scrollY > 80) {
+        const opacity = Math.max(0, 1 - (window.scrollY - 80) / 250);
+        heroSection.style.opacity = opacity;
+        heroSection.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
+      } else {
+        heroSection.style.opacity = 1;
+        heroSection.style.pointerEvents = 'auto';
+      }
     });
 
     // Start whatsapp simulation by default
