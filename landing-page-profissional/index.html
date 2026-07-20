@@ -378,14 +378,14 @@
   </nav>
 
   <!-- Hero Section -->
-  <main class="relative z-10 max-w-7xl mx-auto pt-44 pb-20 px-6 min-h-screen flex flex-col justify-center">
+  <main class="relative z-10 max-w-7xl mx-auto pt-20 lg:pt-24 pb-4 lg:pb-6 px-6 min-h-screen flex flex-col justify-center">
 
     <!-- Hero Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch mb-6">
 
       <!-- Left Card (7/12 cols) - Proposta de Valor -->
       <div
-        class="lg:col-span-7 flex flex-col justify-between p-8 md:p-10 border border-white/5 rounded-3xl bg-neutral-950/40 backdrop-blur-xl relative overflow-hidden animate-fade-in-up"
+        class="lg:col-span-7 flex flex-col justify-between p-6 md:p-8 xl:p-10 border border-white/5 rounded-3xl bg-neutral-950/40 backdrop-blur-xl relative overflow-hidden animate-fade-in-up"
         style="animation-delay: 0.1s;">
         <!-- Glowing background overlay -->
         <div class="absolute -top-12 -left-12 w-64 h-64 bg-cyan-900/10 blur-[100px] rounded-full pointer-events-none">
@@ -402,7 +402,7 @@
 
           <!-- Headline combining sans & serif -->
           <h1
-            class="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.05] mb-6 select-none">
+            class="text-3xl md:text-4xl lg:text-[2.75rem] xl:text-[3.5rem] font-bold tracking-tight text-white leading-[1.05] mb-4 md:mb-5 select-none">
             Sites autorais de <br />
             <span
               class="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">altíssima
@@ -412,14 +412,14 @@
 
           <!-- Description -->
           <p
-            class="text-[0.9rem] md:text-base lg:text-lg font-medium text-[#A0A0A0] md:max-w-[540px] mb-8 md:mb-10 leading-[1.6] font-sans select-none">
+            class="text-sm md:text-base lg:text-[0.95rem] xl:text-lg font-medium text-[#A0A0A0] md:max-w-[540px] mb-6 md:mb-8 leading-[1.6] font-sans select-none">
             Sites profissionais com inteligência artificial integrada para captar, qualificar e converter leads —
             <strong class="font-semibold text-white">24 horas por dia</strong>, sem complicação.
           </p>
         </div>
 
         <!-- CTA and Trust Signal -->
-        <div class="flex flex-col items-center sm:items-start gap-3 md:gap-4 mt-auto w-full">
+        <div class="flex flex-col items-center sm:items-start gap-2 md:gap-3 mt-auto w-full">
           <button
             class="btn-sweep w-full sm:w-auto relative group px-8 py-4 bg-white text-black rounded-full font-bold text-sm overflow-hidden transition-all duration-300 hover:scale-102 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]">
             <div
@@ -444,10 +444,10 @@
       <div
         class="lg:col-span-5 lg:max-w-[500px] lg:ml-auto w-full border-beam-container animate-fade-in-up shadow-[0_0_30px_rgba(32,230,185,0.12)] rounded-[1.5rem]"
         style="animation-delay: 0.3s;">
-        <div class="border-beam-content p-6 flex flex-col justify-between h-full">
+        <div class="border-beam-content p-4 md:p-6 flex flex-col justify-between h-full">
 
           <!-- Mockup Window Header -->
-          <div class="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
+          <div class="flex items-center justify-between border-b border-white/5 pb-3 mb-4">
             <div class="flex items-center gap-2">
               <div class="flex gap-1.5">
                 <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80"></div>
@@ -464,11 +464,11 @@
           </div>
 
           <!-- Interactive Cards (Automações V2) -->
-          <div class="space-y-4 mb-6" id="agent-cards-container">
+          <div class="space-y-3 mb-4" id="agent-cards-container">
 
             <!-- WhatsApp Bot Card -->
             <div id="card-whatsapp"
-              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group card-active-whatsapp">
+              class="flex items-center justify-between p-2.5 md:p-3 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group card-active-whatsapp">
               <div class="flex items-center gap-3">
                 <div
                   class="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform"
@@ -491,7 +491,7 @@
 
             <!-- Lead Scraper Card -->
             <div id="card-scraper"
-              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group opacity-60">
+              class="flex items-center justify-between p-2.5 md:p-3 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group opacity-60">
               <div class="flex items-center gap-3">
                 <div
                   class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform"
@@ -514,7 +514,7 @@
 
             <!-- Funil IA Card -->
             <div id="card-nurturing"
-              class="flex items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group opacity-60">
+              class="flex items-center justify-between p-2.5 md:p-3 rounded-2xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all ease-in-out duration-500 cursor-pointer group opacity-60">
               <div class="flex items-center gap-3">
                 <div
                   class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:scale-105 transition-transform"
@@ -537,17 +537,16 @@
           </div>
 
           <!-- Visualizer & Metrics Panel V2 -->
-          <div class="flex flex-col gap-4">
+          <div class="flex flex-col gap-3 md:gap-3.5">
 
             <!-- Visual Flow Diagram -->
-            <div
-              class="bg-[#1A1A1A] border border-white/5 rounded-2xl p-4 select-none relative overflow-hidden flex items-center justify-between">
+            <div class="bg-[#1A1A1A] border border-white/5 rounded-2xl py-2.5 px-3.5 select-none relative overflow-hidden flex items-center justify-between">
               <!-- Step 1 -->
-              <div class="flex flex-col items-center gap-2 z-10 w-20 text-center" id="step-1">
+              <div class="flex flex-col items-center gap-1.5 z-10 w-20 text-center" id="step-1">
                 <div
-                  class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 step-active-cyan transition-all duration-300 ease-in-out"
+                  class="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 step-active-cyan transition-all duration-300 ease-in-out"
                   id="step-1-icon">
-                  <iconify-icon icon="solar:login-2-linear" width="16"></iconify-icon>
+                  <iconify-icon icon="solar:login-2-linear" width="14"></iconify-icon>
                 </div>
                 <span
                   class="text-[9px] font-mono font-semibold tracking-wider text-neutral-500 uppercase transition-colors duration-300"
@@ -561,11 +560,11 @@
               </div>
 
               <!-- Step 2 -->
-              <div class="flex flex-col items-center gap-2 z-10 w-20 text-center" id="step-2">
+              <div class="flex flex-col items-center gap-1.5 z-10 w-20 text-center" id="step-2">
                 <div
-                  class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300 ease-in-out"
+                  class="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300 ease-in-out"
                   id="step-2-icon">
-                  <iconify-icon icon="solar:cpu-linear" width="16"></iconify-icon>
+                  <iconify-icon icon="solar:cpu-linear" width="14"></iconify-icon>
                 </div>
                 <span
                   class="text-[9px] font-mono font-semibold tracking-wider text-neutral-500 uppercase transition-colors duration-300"
@@ -579,11 +578,11 @@
               </div>
 
               <!-- Step 3 -->
-              <div class="flex flex-col items-center gap-2 z-10 w-20 text-center" id="step-3">
+              <div class="flex flex-col items-center gap-1.5 z-10 w-20 text-center" id="step-3">
                 <div
-                  class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300 ease-in-out"
+                  class="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-neutral-500 transition-all duration-300 ease-in-out"
                   id="step-3-icon">
-                  <iconify-icon icon="solar:chat-round-dots-linear" width="16"></iconify-icon>
+                  <iconify-icon icon="solar:chat-round-dots-linear" width="14"></iconify-icon>
                 </div>
                 <span
                   class="text-[9px] font-mono font-semibold tracking-wider text-neutral-500 uppercase transition-colors duration-300"
@@ -592,36 +591,36 @@
             </div>
 
             <!-- Two-Column KPI Metrics -->
-            <div class="grid grid-cols-2 gap-4">
-              <div class="bg-[#1A1A1A] border border-white/5 rounded-2xl p-4 flex flex-col justify-between">
-                <span class="text-[10px] font-mono uppercase tracking-widest text-[#808080] select-none">Métricas
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-[#1A1A1A] border border-white/5 rounded-2xl p-3 flex flex-col justify-between">
+                <span class="text-[9px] font-mono uppercase tracking-widest text-[#808080] select-none">Métricas
                   Totais</span>
-                <div class="flex items-baseline gap-2 mt-2">
-                  <span class="text-3xl font-bold text-white font-mono tracking-tight" id="metric-kpi-val">48</span>
-                  <span class="text-[10px] text-[#10B981] font-mono flex items-center gap-0.5">
+                <div class="flex items-baseline gap-1.5 mt-1.5">
+                  <span class="text-2xl lg:text-3xl font-bold text-white font-mono tracking-tight" id="metric-kpi-val">48</span>
+                  <span class="text-[9px] text-[#10B981] font-mono flex items-center gap-0.5">
                     <iconify-icon icon="solar:trending-up-linear"></iconify-icon>+14%
                   </span>
                 </div>
-                <span class="text-[10px] text-[#808080] mt-1 select-none" id="metric-kpi-lbl">Leads Qualificados</span>
+                <span class="text-[9px] text-[#808080] mt-0.5 select-none" id="metric-kpi-lbl">Leads Qualificados</span>
               </div>
 
-              <div class="bg-[#1A1A1A] border border-white/5 rounded-2xl p-4 flex flex-col justify-between">
-                <span class="text-[10px] font-mono uppercase tracking-widest text-[#808080] select-none">Precisão da
+              <div class="bg-[#1A1A1A] border border-white/5 rounded-2xl p-3 flex flex-col justify-between">
+                <span class="text-[9px] font-mono uppercase tracking-widest text-[#808080] select-none">Precisão da
                   IA</span>
-                <div class="flex items-baseline gap-2 mt-2">
-                  <span class="text-3xl font-bold text-white font-mono tracking-tight"
+                <div class="flex items-baseline gap-1.5 mt-1.5">
+                  <span class="text-2xl lg:text-3xl font-bold text-white font-mono tracking-tight"
                     id="metric-precision-val">98.4%</span>
-                  <span class="text-[10px] text-cyan-400 font-mono">GPT-4o</span>
+                  <span class="text-[9px] text-cyan-400 font-mono">GPT-4o</span>
                 </div>
-                <span class="text-[10px] text-[#808080] mt-1 select-none">Sem erros de fluxo</span>
+                <span class="text-[9px] text-[#808080] mt-0.5 select-none">Sem erros de fluxo</span>
               </div>
             </div>
 
             <!-- Friendly Events Timeline Feed -->
             <div
-              class="bg-[#1A1A1A] border border-white/5 rounded-2xl p-4 flex flex-col gap-3 min-h-[140px] max-h-[140px] overflow-hidden select-none">
+              class="bg-[#1A1A1A] border border-white/5 rounded-2xl p-3 flex flex-col gap-2.5 min-h-[110px] max-h-[110px] overflow-hidden select-none">
               <span
-                class="text-[10px] font-mono uppercase tracking-widest text-[#808080] border-b border-white/5 pb-2">Timeline
+                class="text-[9px] font-mono uppercase tracking-widest text-[#808080] border-b border-white/5 pb-1.5">Timeline
                 de Atividades</span>
               <div class="flex flex-col gap-2 overflow-y-auto terminal-scroll pr-1 font-mono" id="timeline-events-feed">
                 <!-- Initial Event 1 -->
