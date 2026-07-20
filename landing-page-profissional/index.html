@@ -445,14 +445,41 @@
       </button>
 
       <!-- Mobile Menu Icon -->
-      <button class="sm:hidden text-white">
+      <button id="mobile-menu-trigger" class="sm:hidden text-white p-2.5 hover:bg-white/5 rounded-full transition-colors flex items-center justify-center min-w-[44px] min-h-[44px]">
         <iconify-icon icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
       </button>
     </div>
   </nav>
 
+  <!-- Mobile Menu Drawer -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden opacity-0 transition-all duration-300">
+    <div class="fixed top-0 right-0 bottom-0 w-64 bg-[#030305] border-l border-white/5 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300">
+      <div>
+        <!-- Drawer Header -->
+        <div class="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
+          <span class="font-bold text-white text-sm">Navegação</span>
+          <button id="mobile-menu-close" class="text-neutral-400 hover:text-white p-2 flex items-center justify-center min-w-[44px] min-h-[44px]">
+            <iconify-icon icon="solar:close-circle-linear" width="24"></iconify-icon>
+          </button>
+        </div>
+        <!-- Drawer Links -->
+        <div class="flex flex-col gap-4 text-base font-medium text-neutral-400">
+          <a href="#servicos" class="mobile-drawer-link hover:text-white transition-colors py-2 block">Serviços</a>
+          <a href="#comparativo" class="mobile-drawer-link hover:text-white transition-colors py-2 block">Diferenciais</a>
+          <a href="#portfolio" class="mobile-drawer-link hover:text-white transition-colors py-2 block">Portfólio</a>
+          <a href="#metodologia" class="mobile-drawer-link hover:text-white transition-colors py-2 block">Metodologia</a>
+          <a href="#faq" class="mobile-drawer-link hover:text-white transition-colors py-2 block">FAQ</a>
+        </div>
+      </div>
+      <!-- Drawer Footer -->
+      <button class="w-full bg-white text-black py-3 rounded-full text-sm font-semibold hover:bg-neutral-200 transition-colors shadow-lg">
+        Falar no WhatsApp
+      </button>
+    </div>
+  </div>
+
   <!-- Hero Section -->
-  <main
+  <main id="hero"
     class="relative z-10 max-w-7xl mx-auto pt-20 lg:pt-24 pb-4 lg:pb-6 px-6 flex flex-col justify-center hero-main snap-section">
 
     <!-- Hero Grid -->
@@ -1612,6 +1639,12 @@
       currentTypingIntervals = [];
     }
 
+    function stopSimulations() {
+      if (sequencerTimer) clearInterval(sequencerTimer);
+      if (mainSimulationTimer) clearInterval(mainSimulationTimer);
+      clearTypingIntervals();
+    }
+
     function appendFriendlyLog(text, colorClass = 'text-neutral-300') {
       const feed = document.getElementById('timeline-events-feed');
       const time = new Date().toLocaleTimeString('pt-BR', { hour12: false });
@@ -1855,8 +1888,52 @@
       });
     });
 
-    // Start whatsapp simulation by default
-    restartSimulations();
+    // Mobile Drawer Logic
+    const trigger = document.getElementById('mobile-menu-trigger');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const drawer = document.getElementById('mobile-drawer');
+    const drawerContent = drawer.querySelector('div');
+    const drawerLinks = document.querySelectorAll('.mobile-drawer-link');
+
+    function openDrawer() {
+      drawer.classList.remove('hidden');
+      setTimeout(() => {
+        drawer.classList.remove('opacity-0');
+        drawerContent.classList.remove('translate-x-full');
+      }, 50);
+    }
+
+    function closeDrawer() {
+      drawerContent.classList.add('translate-x-full');
+      drawer.classList.add('opacity-0');
+      setTimeout(() => {
+        drawer.classList.add('hidden');
+      }, 300);
+    }
+
+    trigger.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
+    drawer.addEventListener('click', (e) => {
+      if (e.target === drawer) closeDrawer();
+    });
+
+    // Intersection Observer to optimize performance on mobile / low-end devices
+    const heroElement = document.getElementById('hero');
+    let isHeroVisible = true;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isHeroVisible = entry.isIntersecting;
+        if (isHeroVisible) {
+          restartSimulations();
+        } else {
+          stopSimulations();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(heroElement);
   </script>
 
   <!-- Floating WhatsApp Button -->
