@@ -1,0 +1,323 @@
+body {
+  background-color: #030305;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Background Grids */
+.bg-grid {
+  background-size: 50px 50px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Glows */
+.glow-cyan {
+  box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.4);
+}
+
+.beam-v {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.5), transparent);
+}
+
+/* Border Beam Animation */
+.border-beam-container {
+  position: relative;
+  border-radius: 1.5rem;
+  /* 24px */
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+  will-change: transform;
+}
+
+.border-beam-container::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: conic-gradient(from 0deg,
+      transparent 0deg,
+      transparent 140deg,
+      rgba(6, 182, 212, 0.5) 180deg,
+      rgba(16, 185, 129, 0.5) 240deg,
+      transparent 280deg);
+  animation: border-beam-spin 6s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.border-beam-content {
+  position: relative;
+  z-index: 10;
+  background: rgba(5, 5, 8, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: calc(1.5rem - 1px);
+  margin: 1px;
+  height: calc(100% - 2px);
+}
+
+@keyframes border-beam-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Custom scrollbar for terminal */
+.terminal-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terminal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+.terminal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.3);
+}
+
+/* Custom Glow classes for active Vercel-style radio cards */
+.card-active-whatsapp {
+  border-color: rgba(6, 182, 212, 0.4) !important;
+  background: rgba(6, 182, 212, 0.03) !important;
+  box-shadow: 0 0 20px -5px rgba(6, 182, 212, 0.25);
+  opacity: 1 !important;
+}
+
+.card-active-scraper {
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  background: rgba(16, 185, 129, 0.03) !important;
+  box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.25);
+  opacity: 1 !important;
+}
+
+.card-active-nurturing {
+  border-color: rgba(168, 85, 247, 0.4) !important;
+  background: rgba(168, 85, 247, 0.03) !important;
+  box-shadow: 0 0 20px -5px rgba(168, 85, 247, 0.25);
+  opacity: 1 !important;
+}
+
+/* Pipeline connector anim streaks */
+@keyframes connector-streak {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-connector-cyan {
+  animation: connector-streak 2.0s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  background: linear-gradient(to right, transparent, #22d3ee, #06b6d4, #22d3ee, transparent) !important;
+}
+
+.animate-connector-emerald {
+  animation: connector-streak 2.0s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  background: linear-gradient(to right, transparent, #34d399, #10b981, #34d399, transparent) !important;
+}
+
+.animate-connector-purple {
+  animation: connector-streak 2.0s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  background: linear-gradient(to right, transparent, #c084fc, #a855f7, #c084fc, transparent) !important;
+}
+
+/* Step states and Active Highlights */
+.step-active-cyan {
+  transform: scale(1.15) !important;
+  border-color: rgba(6, 182, 212, 0.8) !important;
+  background-color: rgba(6, 182, 212, 0.2) !important;
+  color: #22d3ee !important;
+  box-shadow: 0 0 20px 2px rgba(6, 182, 212, 0.5), inset 0 0 8px rgba(6, 182, 212, 0.3) !important;
+}
+
+.step-active-emerald {
+  transform: scale(1.15) !important;
+  border-color: rgba(16, 185, 129, 0.8) !important;
+  background-color: rgba(16, 185, 129, 0.2) !important;
+  color: #34d399 !important;
+  box-shadow: 0 0 20px 2px rgba(16, 185, 129, 0.5), inset 0 0 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+.step-active-purple {
+  transform: scale(1.15) !important;
+  border-color: rgba(168, 85, 247, 0.8) !important;
+  background-color: rgba(168, 85, 247, 0.2) !important;
+  color: #c084fc !important;
+  box-shadow: 0 0 20px 2px rgba(168, 85, 247, 0.5), inset 0 0 8px rgba(168, 85, 247, 0.3) !important;
+}
+
+/* Hover Focus Easing on Main Bento Panel */
+.border-beam-container:hover .opacity-40 {
+  opacity: 0.20 !important;
+}
+
+.border-beam-container:hover .card-active-whatsapp {
+  box-shadow: 0 0 30px -3px rgba(6, 182, 212, 0.35), inset 0 0 15px rgba(6, 182, 212, 0.1);
+}
+
+.border-beam-container:hover .card-active-scraper {
+  box-shadow: 0 0 30px -3px rgba(16, 185, 129, 0.35), inset 0 0 15px rgba(16, 185, 129, 0.1);
+}
+
+.border-beam-container:hover .card-active-nurturing {
+  box-shadow: 0 0 30px -3px rgba(168, 85, 247, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.1);
+}
+
+
+/* Sweep animation for CTA */
+@keyframes sweep {
+  0% {
+    left: -100%;
+  }
+
+  50%,
+  100% {
+    left: 150%;
+  }
+}
+
+.btn-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-25deg);
+  animation: sweep 6s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.btn-sweep:hover::after {
+  animation: sweep 1.5s infinite ease-in-out;
+}
+
+/* Terminal Cursor */
+@keyframes cursorBlink {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 5px;
+  height: 10px;
+  background-color: currentColor;
+  margin-left: 2px;
+  animation: cursorBlink 0.8s infinite;
+  vertical-align: middle;
+}
+
+/* Scan-line Animation */
+@keyframes scan-horizontal {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-scan-line {
+  animation: scan-horizontal 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* CSS Scroll Snap (Desktop Only) */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+
+  .snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* Hero container base style */
+.hero-main {
+  min-height: 100vh;
+}
+
+/* Header transition on scroll */
+nav {
+  transition: top 0.3s ease, padding 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+nav.nav-scrolled {
+  top: 0 !important;
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+  background-color: rgba(3, 3, 5, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+nav.nav-scrolled .glass-panel {
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Smooth fade for main content */
+main {
+  transition: opacity 0.2s ease-out;
+  will-change: opacity;
+}
