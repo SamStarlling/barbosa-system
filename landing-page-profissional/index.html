@@ -85,17 +85,21 @@
   </div>
 
   <!-- Vertical Grid Lines (Futuristic / Medical Feel) -->
-  <div class="fixed top-0 bottom-0 left-[8%] w-[1px] bg-white/5 z-0 pointer-events-none hidden lg:block">
-    <div class="beam-v animate-beam-v"></div>
-  </div>
-  <div class="fixed top-0 bottom-0 right-[8%] w-[1px] bg-white/5 z-0 pointer-events-none hidden lg:block">
-    <div class="beam-v animate-beam-v" style="animation-delay: 2s;"></div>
+  <div class="fixed inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-7xl px-6 z-0 pointer-events-none hidden lg:block">
+    <div class="w-full h-full relative border-x border-white/5">
+      <div class="absolute left-0 top-0 bottom-0 w-[1px]">
+        <div class="beam-v animate-beam-v"></div>
+      </div>
+      <div class="absolute right-0 top-0 bottom-0 w-[1px]">
+        <div class="beam-v animate-beam-v" style="animation-delay: 2s;"></div>
+      </div>
+    </div>
   </div>
 
   <!-- Navigation (Savory Plate Glass style) -->
-  <nav id="main-nav" class="fixed top-6 left-0 right-0 z-50 px-4 flex justify-center animate-fade-in-up">
+  <nav id="main-nav" class="fixed top-6 left-0 right-0 z-50 px-6 flex justify-center animate-fade-in-up">
     <div
-      class="glass-panel w-full max-w-6xl rounded-full px-6 py-3 flex items-center justify-between shadow-2xl shadow-black/50">
+      class="glass-panel w-full max-w-7xl rounded-full px-6 py-3 flex items-center justify-between shadow-2xl shadow-black/50">
 
       <!-- Logo -->
       <a href="#" class="flex items-center gap-3 group">
@@ -156,7 +160,7 @@
 
   <!-- Hero Section -->
   <main id="hero"
-    class="relative z-10 max-w-7xl mx-auto pt-20 lg:pt-24 pb-4 lg:pb-6 px-6 flex flex-col justify-center hero-main snap-section">
+    class="relative z-10 max-w-7xl mx-auto pt-20 lg:pt-24 pb-4 lg:pb-6 px-6 md:px-16 flex flex-col justify-center hero-main snap-section">
 
     <!-- Hero Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch mb-6">
@@ -520,7 +524,7 @@
 
   <!-- Services Section -->
   <section id="servicos"
-    class="relative z-10 max-w-7xl mx-auto pt-8 md:pt-10 pb-20 px-6 border-t border-white/5 snap-section">
+    class="relative z-10 max-w-7xl mx-auto pt-8 md:pt-10 pb-20 px-6 md:px-16 border-t border-white/5 snap-section">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
 
       <!-- Left Column - Title, Subtitle, Micro-benefits and CTA -->
@@ -663,7 +667,7 @@
   </section>
 
   <!-- Comparison Section (Tabela Comparativa) -->
-  <section id="comparativo" class="relative z-10 max-w-7xl mx-auto px-6 border-t border-white/5 snap-section">
+  <section id="comparativo" class="relative z-10 max-w-7xl mx-auto px-6 md:px-16 border-t border-white/5 snap-section">
     <div class="flex flex-col justify-between py-10 lg:py-0 lg:h-[80vh] lg:max-h-[720px] animate-fade-in-up" style="animation-delay: 0.1s;">
       
       <!-- Section Header -->
@@ -801,7 +805,7 @@
   </section>
 
   <!-- Portfolio Section (Cases de Sucesso) -->
-  <section id="portfolio" class="relative z-10 max-w-7xl mx-auto px-6 border-t border-white/5 snap-section">
+  <section id="portfolio" class="relative z-10 max-w-7xl mx-auto px-6 md:px-16 border-t border-white/5 snap-section">
     <div class="flex flex-col justify-between py-10 lg:py-0 lg:h-[80vh] lg:max-h-[720px] animate-fade-in-up" style="animation-delay: 0.1s;">
       
       <!-- Section Header -->
@@ -910,7 +914,7 @@
   </section>
 
   <!-- Methodology Section (Como Funciona) -->
-  <section id="metodologia" class="relative z-10 max-w-7xl mx-auto px-6 border-t border-white/5 snap-section">
+  <section id="metodologia" class="relative z-10 max-w-7xl mx-auto px-6 md:px-16 border-t border-white/5 snap-section">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-10 lg:py-0">
 
       <!-- Left Column - Content & Large Indicator -->
@@ -1060,7 +1064,7 @@
   </section>
 
   <!-- FAQ Section (Perguntas Frequentes) -->
-  <section id="faq" class="relative z-10 max-w-7xl mx-auto px-6 border-t border-white/5 snap-section">
+  <section id="faq" class="relative z-10 max-w-7xl mx-auto px-6 md:px-16 border-t border-white/5 snap-section">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 py-10 lg:py-0">
       
       <!-- Left Column - Title & Description -->
@@ -1155,7 +1159,7 @@
   </section>
 
   <!-- Conversion & Footer Section -->
-  <section id="conversao" class="relative z-10 max-w-7xl mx-auto px-6 border-t border-white/5 snap-section">
+  <section id="conversao" class="relative z-10 max-w-7xl mx-auto px-6 md:px-16 border-t border-white/5 snap-section">
     <div class="flex flex-col justify-between py-8 lg:py-0 lg:h-[90vh] lg:max-h-[820px] animate-fade-in-up shrink-0" style="animation-delay: 0.1s;">
       
       <!-- Top spacing for desktop alignment -->
