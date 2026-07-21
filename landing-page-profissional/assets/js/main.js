@@ -255,6 +255,7 @@ cards.forEach(card => {
 // Smooth scroll navigation and fade out effects
 const mainNav = document.getElementById('main-nav');
 const heroSection = document.querySelector('main');
+const heroDashboard = document.getElementById('hero-dashboard');
 
 window.addEventListener('scroll', () => {
   // Header sticky dynamic class toggle
@@ -264,14 +265,34 @@ window.addEventListener('scroll', () => {
     mainNav.classList.remove('nav-scrolled');
   }
 
-  // Smooth fade of hero section based on scroll offset
-  if (window.scrollY > 80) {
-    const opacity = Math.max(0, 1 - (window.scrollY - 80) / 250);
-    heroSection.style.opacity = opacity;
-    heroSection.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
+  // Smooth fade of hero section based on scroll offset (Desktop Only to prevent blank gap on mobile)
+  if (window.innerWidth >= 1024) {
+    if (window.scrollY > 80) {
+      const opacity = Math.max(0, 1 - (window.scrollY - 80) / 250);
+      heroSection.style.opacity = opacity;
+      heroSection.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
+    } else {
+      heroSection.style.opacity = 1;
+      heroSection.style.pointerEvents = 'auto';
+    }
   } else {
+    // Reset hero opacity on mobile
     heroSection.style.opacity = 1;
     heroSection.style.pointerEvents = 'auto';
+
+    // On mobile, fade out the dashboard card specifically as the user scrolls
+    if (heroDashboard) {
+      const dashboardOpacity = Math.max(0, 1 - window.scrollY / 150);
+      heroDashboard.style.opacity = dashboardOpacity;
+      heroDashboard.style.pointerEvents = dashboardOpacity < 0.1 ? 'none' : 'auto';
+
+      // Pause simulations when dashboard is faded out to save CPU/RAM on scroll
+      if (dashboardOpacity < 0.1) {
+        stopSimulations();
+      } else if (isHeroVisible) {
+        restartSimulations();
+      }
+    }
   }
 });
 
